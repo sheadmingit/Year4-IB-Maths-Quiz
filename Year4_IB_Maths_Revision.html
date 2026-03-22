@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 4 IB Maths Revision — BLACKPINK Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-card: #151515;
+    --bg-card-hover: #1c1c1c;
+    --pink: #ff2d87;
+    --pink-light: #ff69a8;
+    --pink-glow: rgba(255, 45, 135, 0.25);
+    --hot-pink: #ff007f;
+    --correct: #00e09e;
+    --correct-bg: rgba(0, 224, 158, 0.1);
+    --wrong: #ff4757;
+    --wrong-bg: rgba(255, 71, 87, 0.1);
+    --text: #f0f0f0;
+    --text-muted: #888;
+    --border: #2a2a2a;
+    --radius: 14px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 60px;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    position: relative;
+    padding: 50px 20px 60px;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(180deg, #2a1a25 0%, var(--bg) 100%);
+  }
+
+  /* Floating clouds */
+  .clouds {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    height: 120px;
+  }
+
+  .cloud {
+    position: absolute;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50px;
+    opacity: 0.5;
+    animation: floatCloud linear infinite;
+  }
+  .cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
+  }
+  .cloud:nth-child(1) { width:120px; height:40px; top:20px; animation-duration:35s; animation-delay:-5s; }
+  .cloud:nth-child(1)::before { width:60px; height:60px; top:-30px; left:15px; }
+  .cloud:nth-child(1)::after { width:40px; height:40px; top:-20px; left:55px; }
+  .cloud:nth-child(2) { width:90px; height:30px; top:50px; animation-duration:50s; animation-delay:-20s; opacity:0.3; }
+  .cloud:nth-child(2)::before { width:45px; height:45px; top:-22px; left:10px; }
+  .cloud:nth-child(2)::after { width:30px; height:30px; top:-15px; left:40px; }
+
+  @keyframes floatCloud {
+    from { transform: translateX(-200px); }
+    to { transform: translateX(calc(100vw + 200px)); }
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,45,135,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .bp-tag {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--pink);
+    border: 2px solid var(--pink);
+    padding: 6px 18px;
+    margin-bottom: 16px;
+    position: relative;
+    box-shadow: 0 4px 0px rgba(255, 45, 135, 0.3);
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 6px;
+    position: relative;
+  }
+
+  .header h1 span {
+    color: var(--pink);
+  }
+
+  .header .subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  /* SCORE BAR */
+  .score-bar {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: -24px auto 24px;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+
+  .score-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 28px;
+    text-align: center;
+    min-width: 110px;
+    box-shadow: 0 4px 0px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+  }
+
+  .score-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0px rgba(0,0,0,0.15);
+  }
+
+  .score-card .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--pink);
+    letter-spacing: 1px;
+  }
+
+  .score-card.correct-card .num { color: var(--correct); }
+  .score-card.wrong-card .num { color: var(--wrong); }
+
+  .score-card .label {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* PROGRESS */
+  .progress-wrap {
+    max-width: 700px;
+    margin: 0 auto 24px;
+    padding: 0 20px;
+  }
+
+  .progress-track {
+    background: var(--border);
+    border-radius: 20px;
+    height: 8px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--hot-pink), var(--pink-light));
+    border-radius: 20px;
+    transition: width 0.5s ease;
+    width: 0%;
+    box-shadow: 0 0 12px var(--pink-glow);
+  }
+
+  .progress-text {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-top: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* TOPIC NAV */
+  .topic-nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 750px;
+    margin: 0 auto 28px;
+    padding: 0 16px;
+  }
+
+  .topic-btn {
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 2px solid var(--border);
+    background: transparent;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 0px #1a1a1a;
+  }
+
+  .topic-btn:hover {
+    border-color: var(--pink);
+    color: var(--pink);
+    background: rgba(255,45,135,0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0px #2a2a2a;
+  }
+
+  .topic-btn.active {
+    background: var(--pink);
+    color: white;
+    border-color: var(--pink);
+    box-shadow: 0 4px 0px #cc1f66;
+    transform: translateY(-2px);
+  }
+
+  .topic-btn.done {
+    background: var(--correct);
+    color: #0a0a0a;
+    border-color: var(--correct);
+    box-shadow: 0 3px 0 #1a7d3d;
+  }
+
+  /* QUIZ CARDS */
+  .quiz-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 18px;
+    animation: slideIn 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .question-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--pink);
+  }
+
+  .question-card.answered-correct::before { background: var(--correct); }
+  .question-card.answered-wrong::before { background: var(--wrong); }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .q-num {
+    background: var(--pink);
+    color: white;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px var(--pink-glow);
+  }
+
+  .q-topic {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--pink-light);
+  }
+
+  .q-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  /* OPTIONS */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    text-align: left;
+    box-shadow: 0 3px 0px #1a1a1a;
+  }
+
+  .option-btn:hover:not(.disabled) {
+    border-color: var(--pink);
+    background: rgba(255,45,135,0.06);
+    box-shadow: 0 3px 0px #cc1f66;
+    transform: translateY(-2px);
+  }
+
+  .option-btn .letter {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .option-btn.correct-answer {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+  }
+  .option-btn.correct-answer .letter {
+    background: var(--correct);
+    color: #0a0a0a;
+  }
+
+  .option-btn.wrong-answer {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+  }
+  .option-btn.wrong-answer .letter {
+    background: var(--wrong);
+    color: white;
+  }
+
+  .option-btn.disabled { cursor: default; opacity: 0.6; }
+
+  /* INPUT ANSWER */
+  .input-answer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .input-answer input {
+    flex: 1;
+    min-width: 150px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.03);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    outline: none;
+    transition: all 0.2s;
+  }
+
+  .input-answer input::placeholder { color: #555; }
+  .input-answer input:focus { border-color: var(--pink); box-shadow: 0 0 16px var(--pink-glow); }
+  .input-answer input.correct { border-color: var(--correct); background: var(--correct-bg); }
+  .input-answer input.wrong { border-color: var(--wrong); background: var(--wrong-bg); }
+
+  .check-btn {
+    padding: 12px 28px;
+    border-radius: 12px;
+    border: none;
+    background: var(--pink);
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 0px #cc1f66;
+  }
+
+  .check-btn:hover { background: var(--hot-pink); transform: translateY(-2px); box-shadow: 0 6px 0px #cc1f66; }
+  .check-btn:active { transform: translateY(2px); box-shadow: 0 2px 0px #cc1f66; }
+  .check-btn:disabled { background: #333; color: #666; box-shadow: none; cursor: default; transform: none; }
+
+  /* FEEDBACK */
+  .feedback {
+    margin-top: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    display: none;
+    animation: fadeIn 0.3s ease;
+    line-height: 1.5;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .feedback.correct {
+    display: block;
+    background: var(--correct-bg);
+    color: var(--correct);
+    border: 1px solid rgba(0,224,158,0.2);
+  }
+
+  .feedback.wrong {
+    display: block;
+    background: var(--wrong-bg);
+    color: #ff6b7a;
+    border: 1px solid rgba(255,71,87,0.2);
+  }
+
+  /* RESULTS */
+  .results-section {
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    display: none;
+  }
+
+  .results-section.visible { display: block; }
+
+  .results-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .results-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--hot-pink), var(--pink-light), var(--hot-pink));
+  }
+
+  .results-emoji { font-size: 3.5rem; margin-bottom: 16px; }
+
+  .results-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    color: var(--pink);
+  }
+
+  .results-score {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    font-weight: 600;
+  }
+
+  .results-breakdown {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .breakdown-chip {
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .breakdown-chip.good {
+    background: var(--correct-bg);
+    color: var(--correct);
+    border: 1px solid rgba(0,224,158,0.2);
+  }
+
+  .breakdown-chip.needs-work {
+    background: var(--wrong-bg);
+    color: #ff6b7a;
+    border: 1px solid rgba(255,71,87,0.2);
+  }
+
+  .restart-btn {
+    padding: 14px 40px;
+    border-radius: 50px;
+    border: 2px solid var(--pink);
+    background: transparent;
+    color: var(--pink);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-transform: uppercase;
+  }
+
+  .restart-btn:hover {
+    background: var(--pink);
+    color: white;
+    box-shadow: 0 0 30px var(--pink-glow);
+  }
+
+  /* Decorative elements */
+  .deco-line {
+    width: 60px;
+    height: 3px;
+    background: var(--pink);
+    margin: 12px auto 0;
+    position: relative;
+    box-shadow: 0 0 10px var(--pink-glow);
+  }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 2.2rem; }
+    .question-card { padding: 20px; }
+    .score-card { padding: 10px 18px; min-width: 85px; }
+    .score-card .num { font-size: 1.6rem; }
+    .bp-tag { font-size: 0.7rem; letter-spacing: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating clouds -->
+<div class="clouds">
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+</div>
+
+<div class="header">
+  <div class="bp-tag">BLACKPINK IN YOUR AREA</div>
+  <h1>YEAR 4 <span>MATHS</span> REVISION</h1>
+  <p class="subtitle">IB Programme &bull; 8 Units &bull; 40 Questions</p>
+  <div class="deco-line"></div>
+</div>
+
+<div class="score-bar">
+  <div class="score-card correct-card"><div class="num" id="correctCount">0</div><div class="label">Correct</div></div>
+  <div class="score-card"><div class="num" id="totalAnswered">0</div><div class="label">Answered</div></div>
+  <div class="score-card wrong-card"><div class="num" id="wrongCount">0</div><div class="label">To Review</div></div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-text" id="progressText">0 / 40 completed</div>
+</div>
+
+<div class="topic-nav" id="topicNav"></div>
+
+<div class="quiz-container" id="quizContainer"></div>
+
+<div class="results-section" id="resultsSection">
+  <div class="results-card">
+    <div class="results-emoji" id="resultsEmoji"></div>
+    <div class="results-title" id="resultsTitle"></div>
+    <div class="results-score" id="resultsScore"></div>
+    <div class="results-breakdown" id="resultsBreakdown"></div>
+    <button class="restart-btn" onclick="restart()">Try Again</button>
+  </div>
+</div>
+
+<div id="confettiWrap" style="position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:999;"></div>
+
+<script>
+// ============================================================
+// SOUND ENGINE — Web Audio API (trendy K-pop vibes!)
+// ============================================================
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new AudioCtx();
+  return audioCtx;
+}
+
+function playCorrectSound() {
+  try {
+    const ctx = getAudioCtx();
+    // K-pop style: bright ascending melody
+    const notes = [523.25, 659.25, 783.99, 1046.50];
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = i % 2 === 0 ? 'sine' : 'triangle';
+      osc.frequency.value = freq;
+      const start = ctx.currentTime + i * 0.1;
+      gain.gain.setValueAtTime(0, start);
+      gain.gain.linearRampToValueAtTime(0.2, start + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + 0.28);
+      osc.start(start);
+      osc.stop(start + 0.32);
+    });
+  } catch(e) {}
+}
+
+function playWrongSound() {
+  try {
+    const ctx = getAudioCtx();
+    // Deep bass drop
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'square';
+    osc.frequency.value = 250;
+    gain.gain.setValueAtTime(0, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.22);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.25);
+  } catch(e) {}
+}
+
+function playClickSound() {
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.value = 900;
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.08);
+  } catch(e) {}
+}
+
+function playCompleteSound() {
+  try {
+    const ctx = getAudioCtx();
+    // Victory fanfare
+    const melody = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+    melody.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      const start = ctx.currentTime + i * 0.12;
+      gain.gain.setValueAtTime(0, start);
+      gain.gain.linearRampToValueAtTime(0.2, start + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + 0.35);
+      osc.start(start);
+      osc.stop(start + 0.42);
+    });
+  } catch(e) {}
+}
+
+// ============================================================
+// CONFETTI & EFFECTS
+// ============================================================
+function spawnConfetti(x, y) {
+  const wrap = document.getElementById('confettiWrap');
+  const colors = ['#ff2d87', '#ff69a8', '#ff007f', '#00e09e', '#ff4757'];
+  for (let i = 0; i < 15; i++) {
+    const el = document.createElement('div');
+    el.style.position = 'absolute';
+    el.style.left = (x + (Math.random() - 0.5) * 180) + 'px';
+    el.style.top = (y - 20) + 'px';
+    el.style.width = (6 + Math.random() * 8) + 'px';
+    el.style.height = (6 + Math.random() * 8) + 'px';
+    el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    el.style.opacity = '1';
+    wrap.appendChild(el);
+    const duration = 0.8 + Math.random() * 0.6;
+    const startTime = performance.now();
+    const animate = () => {
+      const elapsed = (performance.now() - startTime) / 1000;
+      const progress = elapsed / duration;
+      if (progress >= 1) { el.remove(); return; }
+      el.style.transform = 'translateY(' + (progress * 100 * (1 + Math.random() * 0.3)) + 'px) rotate(' + (progress * 720) + 'deg)';
+      el.style.opacity = Math.max(0, 1 - progress);
+      requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }
+}
+
+function bigConfetti() {
+  const wrap = document.getElementById('confettiWrap');
+  const colors = ['#ff2d87', '#ff69a8', '#ff007f', '#00e09e', '#ff4757'];
+  for (let i = 0; i < 60; i++) {
+    const el = document.createElement('div');
+    el.style.position = 'absolute';
+    el.style.left = (Math.random() * window.innerWidth) + 'px';
+    el.style.top = '-20px';
+    el.style.width = (6 + Math.random() * 10) + 'px';
+    el.style.height = (6 + Math.random() * 10) + 'px';
+    el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    el.style.borderRadius = Math.random() > 0.4 ? '50%' : '2px';
+    el.style.opacity = '1';
+    wrap.appendChild(el);
+    const duration = 1.2 + Math.random() * 1;
+    const startTime = performance.now();
+    const animate = () => {
+      const elapsed = (performance.now() - startTime) / 1000;
+      const progress = elapsed / duration;
+      if (progress >= 1) { el.remove(); return; }
+      el.style.transform = 'translateY(' + (progress * 110 * window.innerHeight / 100) + 'px) rotate(' + (progress * 720) + 'deg)';
+      el.style.opacity = Math.max(0, 1 - progress);
+      requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }
+}
+
+const questions = [
+  // UNIT 1: 5-digit Numbers (5 questions)
+  {
+    unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
+    question: "What is the place value of the digit 5 in the number 54,128?",
+    options: ["Hundreds place", "Thousands place", "Ten thousands place", "Tens place"],
+    answer: 2,
+    explanation: "In 54,128, the digit 5 is in the ten thousands place, so its place value is ten thousands."
+  },
+  {
+    unit: "5-Digit Numbers", unitNum: 1, type: "input",
+    question: "What is the value of the digit 4 in the number 84,125?",
+    answer: "4000", accept: ["4000", "4,000", "4 000"],
+    explanation: "The digit 4 is in the thousands place, so its value is 4 \u00d7 1,000 = 4,000."
+  },
+  {
+    unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
+    question: "Fill in the pattern: 9,996 \u2192 9,997 \u2192 9,998 \u2192 ____ \u2192 ____",
+    options: ["9,999 \u2192 10,000", "10,000 \u2192 10,001", "9,999 \u2192 9,990", "10,000 \u2192 9,999"],
+    answer: 0,
+    explanation: "The pattern counts up by 1 each time, so the next two numbers are 9,999 and 10,000."
+  },
+  {
+    unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
+    question: "Which 5-digit number becomes a 4-digit number when you subtract 1 from it?",
+    options: ["99,999", "10,000", "10,001", "11,000"],
+    answer: 1,
+    explanation: "10,000 \u2212 1 = 9,999 which is a 4-digit number."
+  },
+  {
+    unit: "5-Digit Numbers", unitNum: 1, type: "input",
+    question: "In the number 13,531, what is the difference between the values of the two digits '3'?",
+    answer: "2970", accept: ["2970", "2,970", "2 970"],
+    explanation: "The first 3 is in the thousands place (value = 3,000). The second 3 is in the tens place (value = 30). Difference = 3,000 \u2212 30 = 2,970."
+  },
+
+  // UNIT 2: Multiples and Factors (5 questions)
+  {
+    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
+    question: "Which of the following is a multiple of 6?",
+    options: ["14", "22", "30", "25"],
+    answer: 2,
+    explanation: "30 = 6 \u00d7 5, so 30 is a multiple of 6."
+  },
+  {
+    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
+    question: "Which number is a factor of 24?",
+    options: ["5", "7", "9", "8"],
+    answer: 3,
+    explanation: "24 \u00f7 8 = 3, so 8 is a factor of 24."
+  },
+  {
+    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
+    question: "Which of these is a common multiple of 4 and 6?",
+    options: ["8", "10", "12", "18"],
+    answer: 2,
+    explanation: "12 = 4 \u00d7 3 and 12 = 6 \u00d7 2, so 12 is a common multiple of 4 and 6."
+  },
+  {
+    unit: "Multiples & Factors", unitNum: 2, type: "input",
+    question: "List all the factors of 12 from smallest to largest, separated by commas.",
+    answer: "1,2,3,4,6,12", accept: ["1,2,3,4,6,12", "1, 2, 3, 4, 6, 12"],
+    explanation: "The factors of 12 are: 1, 2, 3, 4, 6, 12."
+  },
+  {
+    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
+    question: "What is the first 3 common multiples of 3 and 5?",
+    options: ["3, 5, 15", "15, 30, 45", "10, 15, 20", "5, 10, 15"],
+    answer: 1,
+    explanation: "The common multiples of 3 and 5 are: 15, 30, 45, 60... The first three are 15, 30, 45."
+  },
+
+  // UNIT 3: Quadrilaterals (5 questions)
+  {
+    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
+    question: "A polygon must have at least how many sides?",
+    options: ["2", "3", "4", "5"],
+    answer: 1,
+    explanation: "A polygon must have at least 3 straight sides."
+  },
+  {
+    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
+    question: "Which of the following is NOT a polygon?",
+    options: ["Triangle", "Rectangle", "Circle", "Pentagon"],
+    answer: 2,
+    explanation: "A circle has curved edges, so it is not a polygon. Polygons must have straight sides."
+  },
+  {
+    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
+    question: "How many sides does a quadrilateral have?",
+    options: ["3", "4", "5", "6"],
+    answer: 1,
+    explanation: "A quadrilateral has exactly 4 sides."
+  },
+  {
+    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
+    question: "Which of the following quadrilaterals has all 4 sides equal and all 4 angles equal?",
+    options: ["Trapezium", "Parallelogram", "Rhombus", "Square"],
+    answer: 3,
+    explanation: "A square has all 4 sides equal in length and all 4 angles are right angles (90\u00b0)."
+  },
+  {
+    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
+    question: "A shape with curved edges is _____ a polygon.",
+    options: ["always", "sometimes", "never"],
+    answer: 2,
+    explanation: "A polygon must have straight sides only. Shapes with any curved edges are never polygons."
+  },
+
+  // UNIT 4: Angles (5 questions)
+  {
+    unit: "Angles", unitNum: 4, type: "mcq",
+    question: "An angle that is exactly 90\u00b0 is called a _____ angle.",
+    options: ["Acute", "Right", "Obtuse", "Straight"],
+    answer: 1,
+    explanation: "A right angle is exactly 90\u00b0."
+  },
+  {
+    unit: "Angles", unitNum: 4, type: "mcq",
+    question: "An angle that is greater than 90\u00b0 but less than 180\u00b0 is called:",
+    options: ["Acute angle", "Right angle", "Obtuse angle", "Reflex angle"],
+    answer: 2,
+    explanation: "An obtuse angle is greater than 90\u00b0 but less than 180\u00b0."
+  },
+  {
+    unit: "Angles", unitNum: 4, type: "mcq",
+    question: "An acute angle is always:",
+    options: ["Greater than 90\u00b0", "Exactly 90\u00b0", "Less than 90\u00b0", "Exactly 180\u00b0"],
+    answer: 2,
+    explanation: "An acute angle is any angle that measures less than 90\u00b0."
+  },
+  {
+    unit: "Angles", unitNum: 4, type: "mcq",
+    question: "A straight line forms an angle of:",
+    options: ["90\u00b0", "180\u00b0", "270\u00b0", "360\u00b0"],
+    answer: 1,
+    explanation: "A straight angle is exactly 180\u00b0."
+  },
+  {
+    unit: "Angles", unitNum: 4, type: "mcq",
+    question: "One full turn is equal to:",
+    options: ["90\u00b0", "180\u00b0", "270\u00b0", "360\u00b0"],
+    answer: 3,
+    explanation: "One full turn (complete rotation) is 360\u00b0."
+  },
+
+  // UNIT 5: Line Graphs (5 questions)
+  {
+    unit: "Line Graphs", unitNum: 5, type: "mcq",
+    question: "A line graph shows data that changes over ______.",
+    options: ["colour", "size", "time", "shape"],
+    answer: 2,
+    explanation: "Line graphs are used to show how data changes over time."
+  },
+  {
+    unit: "Line Graphs", unitNum: 5, type: "mcq",
+    question: "On a line graph, a line going upward from left to right means the data is:",
+    options: ["Decreasing", "Staying the same", "Increasing", "Not changing"],
+    answer: 2,
+    explanation: "When the line slopes upward from left to right, the data values are increasing."
+  },
+  {
+    unit: "Line Graphs", unitNum: 5, type: "input",
+    question: "A shop sold these sandwiches: Sun = 68, Mon = 74, Tue = 56, Wed = 34, Thu = 94, Fri = 56, Sat = 80. What is the total for the week?",
+    answer: "462", accept: ["462"],
+    explanation: "68 + 74 + 56 + 34 + 94 + 56 + 80 = 462 sandwiches."
+  },
+  {
+    unit: "Line Graphs", unitNum: 5, type: "mcq",
+    question: "On a vertical axis, if the scale goes 0, 10, 20, 30..., each small interval represents:",
+    options: ["1", "2", "5", "10"],
+    answer: 3,
+    explanation: "Each labelled mark represents 10, so each small interval between marks is 10."
+  },
+  {
+    unit: "Line Graphs", unitNum: 5, type: "mcq",
+    question: "If a line graph shows a steep drop between two points, this means:",
+    options: ["The value increased quickly", "The value decreased quickly", "The value stayed the same", "There is no data"],
+    answer: 1,
+    explanation: "A steep downward line means the value decreased rapidly between those two time points."
+  },
+
+  // UNIT 6: Time (5 questions)
+  {
+    unit: "Time", unitNum: 6, type: "input",
+    question: "How many minutes are in 2 hours and 15 minutes?",
+    answer: "135", accept: ["135"],
+    explanation: "2 hours = 120 minutes. 120 + 15 = 135 minutes."
+  },
+  {
+    unit: "Time", unitNum: 6, type: "mcq",
+    question: "What time is it 45 minutes after 10:30 a.m.?",
+    options: ["11:00 a.m.", "11:15 a.m.", "11:30 a.m.", "10:75 a.m."],
+    answer: 1,
+    explanation: "10:30 + 30 minutes = 11:00. Then add 15 more minutes = 11:15 a.m."
+  },
+  {
+    unit: "Time", unitNum: 6, type: "input",
+    question: "How many seconds are in 3 minutes?",
+    answer: "180", accept: ["180"],
+    explanation: "1 minute = 60 seconds. 3 \u00d7 60 = 180 seconds."
+  },
+  {
+    unit: "Time", unitNum: 6, type: "mcq",
+    question: "A film starts at 2:45 p.m. and ends at 4:20 p.m. How long is the film?",
+    options: ["1 hour 25 minutes", "1 hour 35 minutes", "1 hour 45 minutes", "2 hours 35 minutes"],
+    answer: 1,
+    explanation: "From 2:45 to 3:45 = 1 hour. From 3:45 to 4:20 = 35 minutes. Total = 1 hour 35 minutes."
+  },
+  {
+    unit: "Time", unitNum: 6, type: "mcq",
+    question: "Which is the same as 3:00 p.m. in 24-hour time?",
+    options: ["03:00", "13:00", "15:00", "30:00"],
+    answer: 2,
+    explanation: "3:00 p.m. in 24-hour time is 15:00 (add 12 to the hour for p.m. times after 12)."
+  },
+
+  // UNIT 7: Decimals (5 questions)
+  {
+    unit: "Decimals", unitNum: 7, type: "mcq",
+    question: "Which of these is a two-decimal-place number?",
+    options: ["4.3", "5.2", "3.08", "17.8"],
+    answer: 2,
+    explanation: "3.08 has two digits after the decimal point (0 and 8), making it a two-decimal-place number."
+  },
+  {
+    unit: "Decimals", unitNum: 7, type: "input",
+    question: "Write 6 equal parts of 0.1 as a decimal.",
+    answer: "0.6", accept: ["0.6", ".6", "0.60"],
+    explanation: "6 \u00d7 0.1 = 0.6"
+  },
+  {
+    unit: "Decimals", unitNum: 7, type: "mcq",
+    question: "On a number line from 0 to 1, what decimal is exactly halfway?",
+    options: ["0.25", "0.4", "0.5", "0.75"],
+    answer: 2,
+    explanation: "0.5 is exactly halfway between 0 and 1."
+  },
+  {
+    unit: "Decimals", unitNum: 7, type: "mcq",
+    question: "34.56 = 30 + 4 + _____ + 0.06. What goes in the blank?",
+    options: ["5", "0.5", "0.56", "50"],
+    answer: 1,
+    explanation: "34.56 = 30 + 4 + 0.5 + 0.06. The digit 5 in 34.56 is in the tenths place, so its value is 0.5."
+  },
+  {
+    unit: "Decimals", unitNum: 7, type: "input",
+    question: "69 equal parts of 0.01 = ?",
+    answer: "0.69", accept: ["0.69", ".69"],
+    explanation: "69 \u00d7 0.01 = 0.69"
+  },
+
+  // UNIT 8: Multiplication (5 questions)
+  {
+    unit: "Multiplication", unitNum: 8, type: "input",
+    question: "Calculate: 13 \u00d7 8 = ?",
+    answer: "104", accept: ["104"],
+    explanation: "Using the area model: 8 \u00d7 10 = 80 and 8 \u00d7 3 = 24. So 80 + 24 = 104."
+  },
+  {
+    unit: "Multiplication", unitNum: 8, type: "input",
+    question: "Calculate: 34 \u00d7 23 = ?",
+    answer: "782", accept: ["782"],
+    explanation: "Using the grid method: 30\u00d720=600, 30\u00d73=90, 4\u00d720=80, 4\u00d73=12. Total = 600+90+80+12 = 782."
+  },
+  {
+    unit: "Multiplication", unitNum: 8, type: "input",
+    question: "Calculate: 58 \u00d7 26 = ?",
+    answer: "1508", accept: ["1508", "1,508", "1 508"],
+    explanation: "58 \u00d7 6 = 348 and 58 \u00d7 20 = 1,160. Total = 348 + 1,160 = 1,508."
+  },
+  {
+    unit: "Multiplication", unitNum: 8, type: "mcq",
+    question: "Which multiplication gives the largest answer?",
+    options: ["43 \u00d7 30", "18 \u00d7 24", "402 \u00d7 15", "560 \u00d7 40"],
+    answer: 3,
+    explanation: "43\u00d730 = 1,290. 18\u00d724 = 432. 402\u00d715 = 6,030. 560\u00d740 = 22,400. The largest is 560 \u00d7 40."
+  },
+  {
+    unit: "Multiplication", unitNum: 8, type: "input",
+    question: "A school has 12 classrooms with 15 students each. How many students in total?",
+    answer: "180", accept: ["180"],
+    explanation: "12 \u00d7 15 = 180 students."
+  }
+];
+
+const unitNames = [
+  "5-Digit Numbers", "Multiples & Factors", "Quadrilaterals", "Angles",
+  "Line Graphs", "Time", "Decimals", "Multiplication"
+];
+
+let correctTotal = 0, wrongTotal = 0, answeredTotal = 0;
+let answered = new Array(questions.length).fill(false);
+
+function init() {
+  buildTopicNav();
+  renderQuestions();
+  updateScores();
+}
+
+function buildTopicNav() {
+  const nav = document.getElementById('topicNav');
+  let html = '<button class="topic-btn active" onclick="filterTopic(\'all\', this)">All</button>';
+  unitNames.forEach((name, i) => {
+    html += '<button class="topic-btn" onclick="filterTopic(' + (i+1) + ', this)">' + name + '</button>';
+  });
+  nav.innerHTML = html;
+}
+
+function filterTopic(unit, btn) {
+  document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.question-card').forEach(card => {
+    card.style.display = (unit === "all" || parseInt(card.dataset.unit) === unit) ? 'block' : 'none';
+  });
+}
+
+function renderQuestions() {
+  const container = document.getElementById('quizContainer');
+  const letters = ['A','B','C','D'];
+  let html = '';
+  questions.forEach((q, idx) => {
+    html += '<div class="question-card" id="qcard-' + idx + '" data-unit="' + q.unitNum + '">';
+    html += '<div class="q-header"><div class="q-num">' + (idx+1) + '</div><span class="q-topic">Unit ' + q.unitNum + ': ' + q.unit + '</span></div>';
+    html += '<div class="q-text">' + q.question + '</div>';
+    if (q.type === "mcq") {
+      html += '<div class="options" id="options-' + idx + '">';
+      q.options.forEach((opt, oi) => {
+        html += '<button class="option-btn" onclick="selectMCQ(' + idx + ',' + oi + ',this)"><span class="letter">' + letters[oi] + '</span><span>' + opt + '</span></button>';
+      });
+      html += '</div>';
+    } else {
+      html += '<div class="input-answer" id="input-' + idx + '"><input type="text" id="inp-' + idx + '" placeholder="Type your answer\u2026" onkeypress="if(event.key===\'Enter\')checkInput(' + idx + ')"><button class="check-btn" id="checkbtn-' + idx + '" onclick="checkInput(' + idx + ')">Check</button></div>';
+    }
+    html += '<div class="feedback" id="fb-' + idx + '"></div></div>';
+  });
+  container.innerHTML = html;
+}
+
+function selectMCQ(qIdx, optIdx, btn) {
+  if (answered[qIdx]) return;
+  playClickSound();
+  answered[qIdx] = true;
+  answeredTotal++;
+  const q = questions[qIdx];
+  const card = document.getElementById('qcard-' + qIdx);
+  const buttons = document.querySelectorAll('#options-' + qIdx + ' .option-btn');
+  const fb = document.getElementById('fb-' + qIdx);
+  buttons.forEach(b => b.classList.add('disabled'));
+  if (optIdx === q.answer) {
+    correctTotal++;
+    btn.classList.add('correct-answer');
+    card.classList.add('answered-correct');
+    fb.className = 'feedback correct';
+    fb.innerHTML = '\u2705 Correct! ' + q.explanation;
+    playCorrectSound();
+    const rect = btn.getBoundingClientRect();
+    spawnConfetti(rect.left + rect.width/2, rect.top);
+  } else {
+    wrongTotal++;
+    btn.classList.add('wrong-answer');
+    buttons[q.answer].classList.add('correct-answer');
+    card.classList.add('answered-wrong');
+    fb.className = 'feedback wrong';
+    fb.innerHTML = '\u274c Not quite. ' + q.explanation;
+    playWrongSound();
+  }
+  updateScores();
+  checkCompletion();
+}
+
+function checkInput(qIdx) {
+  if (answered[qIdx]) return;
+  const inp = document.getElementById('inp-' + qIdx);
+  const val = inp.value.trim();
+  if (!val) return;
+  playClickSound();
+  answered[qIdx] = true;
+  answeredTotal++;
+  const q = questions[qIdx];
+  const card = document.getElementById('qcard-' + qIdx);
+  const fb = document.getElementById('fb-' + qIdx);
+  const checkBtn = document.getElementById('checkbtn-' + qIdx);
+  inp.disabled = true;
+  checkBtn.disabled = true;
+  const normalised = val.replace(/\s/g, '').toLowerCase();
+  const isCorrect = q.accept.some(a => a.replace(/\s/g, '').toLowerCase() === normalised);
+  if (isCorrect) {
+    correctTotal++;
+    inp.classList.add('correct');
+    card.classList.add('answered-correct');
+    fb.className = 'feedback correct';
+    fb.innerHTML = '\u2705 Correct! ' + q.explanation;
+    playCorrectSound();
+    const rect = inp.getBoundingClientRect();
+    spawnConfetti(rect.left + rect.width/2, rect.top);
+  } else {
+    wrongTotal++;
+    inp.classList.add('wrong');
+    card.classList.add('answered-wrong');
+    fb.className = 'feedback wrong';
+    fb.innerHTML = '\u274c The answer is <strong>' + q.answer + '</strong>. ' + q.explanation;
+    playWrongSound();
+  }
+  updateScores();
+  checkCompletion();
+}
+
+function updateScores() {
+  document.getElementById('correctCount').textContent = correctTotal;
+  document.getElementById('wrongCount').textContent = wrongTotal;
+  document.getElementById('totalAnswered').textContent = answeredTotal;
+  const pct = Math.round((answeredTotal / questions.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = answeredTotal + ' / ' + questions.length + ' completed';
+  unitNames.forEach((name, i) => {
+    const unitQs = questions.filter(q => q.unitNum === i+1);
+    const allDone = unitQs.every(q => answered[questions.indexOf(q)]);
+    const btns = document.querySelectorAll('.topic-btn');
+    if (allDone && btns[i+1]) btns[i+1].classList.add('done');
+  });
+}
+
+function checkCompletion() {
+  if (answeredTotal === questions.length) {
+    setTimeout(() => {
+      playCompleteSound();
+      bigConfetti();
+      showResults();
+    }, 600);
+  }
+}
+
+function showResults() {
+  const section = document.getElementById('resultsSection');
+  section.classList.add('visible');
+  const pct = Math.round((correctTotal / questions.length) * 100);
+  let emoji, title;
+  if (pct >= 90) { emoji = '\ud83c\udf1f'; title = 'KILL THIS LOVE!'; }
+  else if (pct >= 75) { emoji = '\ud83d\udc96'; title = 'HOW YOU LIKE THAT!'; }
+  else if (pct >= 50) { emoji = '\u2728'; title = 'DDU-DU DDU-DU!'; }
+  else { emoji = '\ud83d\udcaa'; title = 'KEEP PRACTISING, BLINK!'; }
+  document.getElementById('resultsEmoji').textContent = emoji;
+  document.getElementById('resultsTitle').textContent = title;
+  document.getElementById('resultsScore').textContent = 'You got ' + correctTotal + ' out of ' + questions.length + ' correct (' + pct + '%)';
+  let bHtml = '';
+  unitNames.forEach((name, i) => {
+    const unitQs = questions.filter(q => q.unitNum === i+1);
+    let uc = 0;
+    unitQs.forEach(q => { if (document.getElementById('qcard-' + questions.indexOf(q)).classList.contains('answered-correct')) uc++; });
+    const cls = uc >= Math.ceil(unitQs.length * 0.6) ? 'good' : 'needs-work';
+    bHtml += '<span class="breakdown-chip ' + cls + '">' + name + ': ' + uc + '/' + unitQs.length + '</span>';
+  });
+  document.getElementById('resultsBreakdown').innerHTML = bHtml;
+  section.scrollIntoView({ behavior: 'smooth' });
+}
+
+function restart() {
+  playClickSound();
+  correctTotal = 0; wrongTotal = 0; answeredTotal = 0;
+  answered = new Array(questions.length).fill(false);
+  document.getElementById('resultsSection').classList.remove('visible');
+  document.querySelectorAll('.topic-btn').forEach((b, i) => { b.classList.remove('done', 'active'); if (i === 0) b.classList.add('active'); });
+  renderQuestions();
+  updateScores();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+init();
+</script>
+</body>
+</html>

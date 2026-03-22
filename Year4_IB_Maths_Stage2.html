@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 4 IB Maths Revision — Stage 2: CHALLENGE</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-card: #151515;
+    --bg-card-hover: #1c1c1c;
+    --pink: #ff2d87;
+    --pink-light: #ff69a8;
+    --pink-glow: rgba(255, 45, 135, 0.25);
+    --hot-pink: #ff007f;
+    --correct: #00e09e;
+    --correct-bg: rgba(0, 224, 158, 0.1);
+    --wrong: #ff4757;
+    --wrong-bg: rgba(255, 71, 87, 0.1);
+    --text: #f0f0f0;
+    --text-muted: #888;
+    --border: #2a2a2a;
+    --radius: 14px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 60px;
+    overflow-x: hidden;
+  }
+
+  /* Floating clouds — subtle BLACKPINK touch */
+  .clouds {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    height: 120px;
+  }
+
+  .cloud {
+    position: absolute;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50px;
+    opacity: 0.3;
+    animation: floatCloud linear infinite;
+  }
+  .cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  .cloud:nth-child(1) { width:120px; height:40px; top:20px; animation-duration:35s; animation-delay:-5s; }
+  .cloud:nth-child(1)::before { width:60px; height:60px; top:-30px; left:15px; }
+  .cloud:nth-child(1)::after { width:40px; height:40px; top:-20px; left:55px; }
+  .cloud:nth-child(2) { width:90px; height:30px; top:50px; animation-duration:50s; animation-delay:-20s; opacity:0.15; }
+  .cloud:nth-child(2)::before { width:45px; height:45px; top:-22px; left:10px; }
+  .cloud:nth-child(2)::after { width:30px; height:30px; top:-15px; left:40px; }
+
+  @keyframes floatCloud {
+    from { transform: translateX(-200px); }
+    to { transform: translateX(calc(100vw + 200px)); }
+  }
+
+  /* HEADER */
+  .header {
+    position: relative;
+    padding: 50px 20px 60px;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(180deg, #1a0a12 0%, var(--bg) 100%);
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,45,135,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .stage-tag {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--hot-pink);
+    border: 2px solid var(--hot-pink);
+    padding: 6px 18px;
+    margin-bottom: 16px;
+    position: relative;
+    box-shadow: 0 4px 0px rgba(255, 0, 127, 0.3);
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 6px;
+    position: relative;
+  }
+
+  .header h1 span {
+    color: var(--pink);
+    animation: pulse-text 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-text {
+    0%, 100% { text-shadow: 0 0 20px var(--pink-glow); }
+    50% { text-shadow: 0 0 40px var(--pink-glow); }
+  }
+
+  .header .subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  /* SCORE BAR */
+  .score-bar {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: -24px auto 24px;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+
+  .score-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 28px;
+    text-align: center;
+    min-width: 110px;
+    box-shadow: 0 4px 0px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+  }
+
+  .score-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0px rgba(0,0,0,0.15);
+  }
+
+  .score-card .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--pink);
+    letter-spacing: 1px;
+  }
+
+  .score-card.correct-card .num { color: var(--correct); }
+  .score-card.wrong-card .num { color: var(--wrong); }
+
+  .score-card .label {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* PROGRESS */
+  .progress-wrap {
+    max-width: 700px;
+    margin: 0 auto 24px;
+    padding: 0 20px;
+  }
+
+  .progress-track {
+    background: var(--border);
+    border-radius: 20px;
+    height: 8px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--hot-pink), var(--pink-light));
+    border-radius: 20px;
+    transition: width 0.5s ease;
+    width: 0%;
+    box-shadow: 0 0 12px var(--pink-glow);
+  }
+
+  .progress-text {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-top: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* TOPIC NAV */
+  .topic-nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 750px;
+    margin: 0 auto 28px;
+    padding: 0 16px;
+  }
+
+  .topic-btn {
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 2px solid var(--border);
+    background: transparent;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 0px #1a1a1a;
+  }
+
+  .topic-btn:hover {
+    border-color: var(--pink);
+    color: var(--pink);
+    background: rgba(255,45,135,0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0px #2a2a2a;
+  }
+
+  .topic-btn.active {
+    background: var(--pink);
+    color: white;
+    border-color: var(--pink);
+    box-shadow: 0 4px 0px #cc1f66;
+    transform: translateY(-2px);
+  }
+
+  .topic-btn.done {
+    background: var(--correct);
+    color: #0a0a0a;
+    border-color: var(--correct);
+    box-shadow: 0 3px 0 #1a7d3d;
+  }
+
+  /* QUIZ CARDS */
+  .quiz-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .question-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 18px;
+    animation: slideIn 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 0px rgba(0,0,0,0.2);
+  }
+
+  .question-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--pink);
+  }
+
+  .question-card.answered-correct::before { background: var(--correct); }
+  .question-card.answered-wrong::before { background: var(--wrong); }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .q-num {
+    background: var(--pink);
+    color: white;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px var(--pink-glow);
+  }
+
+  .q-topic {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--pink-light);
+  }
+
+  .q-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  /* OPTIONS */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    text-align: left;
+    box-shadow: 0 3px 0px #1a1a1a;
+  }
+
+  .option-btn:hover:not(.disabled) {
+    border-color: var(--pink);
+    background: rgba(255,45,135,0.06);
+    box-shadow: 0 3px 0px #cc1f66;
+    transform: translateY(-2px);
+  }
+
+  .option-btn .letter {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .option-btn.correct-answer {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+  }
+  .option-btn.correct-answer .letter {
+    background: var(--correct);
+    color: #0a0a0a;
+  }
+
+  .option-btn.wrong-answer {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+  }
+  .option-btn.wrong-answer .letter {
+    background: var(--wrong);
+    color: white;
+  }
+
+  .option-btn.disabled { cursor: default; opacity: 0.6; }
+
+  /* INPUT ANSWER */
+  .input-answer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .input-answer input {
+    flex: 1;
+    min-width: 150px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: rgba(255,255,255,0.03);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    outline: none;
+    transition: all 0.2s;
+    box-shadow: 0 2px 0px #1a1a1a;
+  }
+
+  .input-answer input::placeholder { color: #555; }
+  .input-answer input:focus { border-color: var(--pink); box-shadow: 0 3px 0px #cc1f66; }
+  .input-answer input.correct { border-color: var(--correct); background: var(--correct-bg); }
+  .input-answer input.wrong { border-color: var(--wrong); background: var(--wrong-bg); }
+
+  .check-btn {
+    padding: 12px 28px;
+    border-radius: 12px;
+    border: none;
+    background: var(--pink);
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 0px #cc1f66;
+  }
+
+  .check-btn:hover { background: var(--hot-pink); transform: translateY(-2px); box-shadow: 0 6px 0px #cc1f66; }
+  .check-btn:active { transform: translateY(2px); box-shadow: 0 2px 0px #cc1f66; }
+  .check-btn:disabled { background: #333; color: #666; box-shadow: none; cursor: default; transform: none; }
+
+  /* FEEDBACK */
+  .feedback {
+    margin-top: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    display: none;
+    animation: fadeIn 0.3s ease;
+    line-height: 1.5;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .feedback.correct {
+    display: block;
+    background: var(--correct-bg);
+    color: var(--correct);
+    border: 1px solid rgba(0,224,158,0.2);
+  }
+
+  .feedback.wrong {
+    display: block;
+    background: var(--wrong-bg);
+    color: #ff6b7a;
+    border: 1px solid rgba(255,71,87,0.2);
+  }
+
+  /* RESULTS */
+  .results-section {
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    display: none;
+  }
+
+  .results-section.visible { display: block; }
+
+  .results-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 0px rgba(0,0,0,0.3);
+  }
+
+  .results-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--hot-pink), var(--pink-light), var(--hot-pink));
+  }
+
+  .results-emoji { font-size: 3.5rem; margin-bottom: 16px; }
+
+  .results-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    color: var(--pink);
+  }
+
+  .results-score {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    font-weight: 600;
+  }
+
+  .results-breakdown {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .breakdown-chip {
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .breakdown-chip.good {
+    background: var(--correct-bg);
+    color: var(--correct);
+    border: 1px solid rgba(0,224,158,0.2);
+  }
+
+  .breakdown-chip.needs-work {
+    background: var(--wrong-bg);
+    color: #ff6b7a;
+    border: 1px solid rgba(255,71,87,0.2);
+  }
+
+  .restart-btn {
+    padding: 14px 40px;
+    border-radius: 50px;
+    border: 2px solid var(--pink);
+    background: transparent;
+    color: var(--pink);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-transform: uppercase;
+    box-shadow: 0 4px 0px rgba(255,45,135,0.3);
+  }
+
+  .restart-btn:hover {
+    background: var(--pink);
+    color: white;
+    box-shadow: 0 0 30px var(--pink-glow);
+  }
+
+  .stage-link-section {
+    text-align: center;
+    margin: 16px 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .stage-link-section a {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    box-shadow: 0 3px 0px #1a1a1a;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .stage-link-section a:hover {
+    border-color: var(--pink);
+    color: var(--pink);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0px #2a2a2a;
+  }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 2.2rem; }
+    .question-card { padding: 20px; }
+    .score-card { padding: 10px 18px; min-width: 85px; }
+    .score-card .num { font-size: 1.6rem; }
+    .check-btn { padding: 12px 18px; font-size: 0.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating clouds -->
+<div class="clouds">
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+</div>
+
+<div class="header">
+  <div class="stage-tag">⚡ STAGE 2 — CHALLENGE</div>
+  <h1>YEAR 4 <span>MATHS</span> REVISION</h1>
+  <p class="subtitle">IB Programme • 8 Units • 40 HARDER Questions</p>
+</div>
+
+<div class="stage-link-section">
+  <a href="Year4_IB_Maths_Revision.html">← Back to Stage 1</a>
+</div>
+
+<div class="score-bar">
+  <div class="score-card correct-card"><div class="num" id="correctCount">0</div><div class="label">Correct</div></div>
+  <div class="score-card"><div class="num" id="totalAnswered">0</div><div class="label">Answered</div></div>
+  <div class="score-card wrong-card"><div class="num" id="wrongCount">0</div><div class="label">To Review</div></div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-text" id="progressText">0 / 40 completed</div>
+</div>
+
+<div class="topic-nav" id="topicNav"></div>
+
+<div class="quiz-container" id="quizContainer"></div>
+
+<div class="results-section" id="resultsSection">
+  <div class="results-card">
+    <div class="results-emoji" id="resultsEmoji"></div>
+    <div class="results-title" id="resultsTitle"></div>
+    <div class="results-score" id="resultsScore"></div>
+    <div class="results-breakdown" id="resultsBreakdown"></div>
+    <button class="restart-btn" onclick="restart()">Try Again</button>
+  </div>
+</div>
+
+<div id="confettiWrap" style="position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:999;"></div>
+
+<script>
+// ============================================================
+// SOUND ENGINE — Web Audio API (K-pop vibes!)
+// ============================================================
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new AudioCtx();
+  return audioCtx;
+}
+
+function playCorrectSound() {
+  try {
+    const ctx = getAudioCtx();
+    // Bright ascending K-pop chime
+    const notes = [523.25, 659.25, 783.99, 1046.50];
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = i % 2 === 0 ? 'sine' : 'triangle';
+      osc.frequency.value = freq;
+      const start = ctx.currentTime + i * 0.1;
+      gain.gain.setValueAtTime(0, start);
+      gain.gain.linearRampToValueAtTime(0.2, start + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + 0.28);
+      osc.start(start);
+      osc.stop(start + 0.32);
+    });
+  } catch(e) {}
+}
+
+function playWrongSound() {
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'square';
+    osc.frequency.value = 250;
+    gain.gain.setValueAtTime(0, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.22);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.25);
+  } catch(e) {}
+}
+
+function playClickSound() {
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.value = 900;
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.08);
+  } catch(e) {}
+}
+
+function playCompleteSound() {
+  try {
+    const ctx = getAudioCtx();
+    // Victory fanfare
+    const melody = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+    melody.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      const start = ctx.currentTime + i * 0.12;
+      gain.gain.setValueAtTime(0, start);
+      gain.gain.linearRampToValueAtTime(0.2, start + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + 0.35);
+      osc.start(start);
+      osc.stop(start + 0.42);
+    });
+  } catch(e) {}
+}
+
+// ============================================================
+// CONFETTI & EFFECTS
+// ============================================================
+function spawnConfetti(x, y) {
+  const wrap = document.getElementById('confettiWrap');
+  const colors = ['#ff2d87', '#ff69a8', '#ff007f', '#00e09e', '#ff4757'];
+  for (let i = 0; i < 15; i++) {
+    const el = document.createElement('div');
+    el.style.position = 'absolute';
+    el.style.left = (x + (Math.random() - 0.5) * 180) + 'px';
+    el.style.top = (y - 20) + 'px';
+    el.style.width = (6 + Math.random() * 8) + 'px';
+    el.style.height = (6 + Math.random() * 8) + 'px';
+    el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    el.style.opacity = '1';
+    wrap.appendChild(el);
+    const duration = 0.8 + Math.random() * 0.6;
+    const startTime = performance.now();
+    const animate = () => {
+      const elapsed = (performance.now() - startTime) / 1000;
+      const progress = elapsed / duration;
+      if (progress >= 1) { el.remove(); return; }
+      el.style.transform = 'translateY(' + (progress * 100 * (1 + Math.random() * 0.3)) + 'px) rotate(' + (progress * 720) + 'deg)';
+      el.style.opacity = Math.max(0, 1 - progress);
+      requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }
+}
+
+function bigConfetti() {
+  const wrap = document.getElementById('confettiWrap');
+  const colors = ['#ff2d87', '#ff69a8', '#ff007f', '#00e09e', '#ff4757'];
+  for (let i = 0; i < 60; i++) {
+    const el = document.createElement('div');
+    el.style.position = 'absolute';
+    el.style.left = (Math.random() * window.innerWidth) + 'px';
+    el.style.top = '-20px';
+    el.style.width = (6 + Math.random() * 10) + 'px';
+    el.style.height = (6 + Math.random() * 10) + 'px';
+    el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    el.style.borderRadius = Math.random() > 0.4 ? '50%' : '2px';
+    el.style.opacity = '1';
+    wrap.appendChild(el);
+    const duration = 1.2 + Math.random() * 1;
+    const startTime = performance.now();
+    const animate = () => {
+      const elapsed = (performance.now() - startTime) / 1000;
+      const progress = elapsed / duration;
+      if (progress >= 1) { el.remove(); return; }
+      el.style.transform = 'translateY(' + (progress * 110 * window.innerHeight / 100) + 'px) rotate(' + (progress * 720) + 'deg)';
+      el.style.opacity = Math.max(0, 1 - progress);
+      requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }
+}
+
+const questions = [
+  // UNIT 1: 5-Digit Numbers (5 questions)
+  {
+    unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
+    question: "Which number is 1,000 more than 49,356?",
+    options: ["39,356", "49,456", "50,356", "49,366"],
+    answer: 2,
+    explanation: "Adding 1,000 to 49,356: 49,356 + 1,000 = 50,356. Only the ten-thousands digit changes from 4 to 5."
+  },
+  {
+    unit: "5-Digit Numbers", unitNum: 1, type: "input",
+    question: "Round 76,482 to the nearest thousand.",
+    answer: "76000", accept: ["76000", "76,000", "76 000"],
+    explanation: "Look at the hundreds digit: 4 < 5, so we round down. 76,482 → 76,000."
+  },
+  {
+    unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
+    question: "Order these from smallest to largest: 32,819 | 32,198 | 32,981 | 32,189",
+    options: ["32,189 < 32,198 < 32,819 < 32,981", "32,198 < 32,189 < 32,819 < 32,981", "32,819 < 32,981 < 32,189 < 32,198", "32,981 > 32,819 > 32,198 > 32,189"],
+    answer: 0,
+    explanation: "All start with 32 — compare hundreds: 1 < 1 (tie, look at tens: 8 vs 9) → 32,189 < 32,198 < 32,819 < 32,981."
+  },
+  {
+    unit: "5-Digit Numbers", unitNum: 1, type: "input",
+    question: "What is 10,000 less than 83,060?",
+    answer: "73060", accept: ["73060", "73,060", "73 060"],
+    explanation: "83,060 − 10,000 = 73,060. Subtract 1 from the ten-thousands digit: 8 − 1 = 7."
+  },
+  {
+    unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
+    question: "The digit 7 appears twice in the number 70,174. What is the DIFFERENCE in their values?",
+    options: ["63", "693", "6,930", "69,300"],
+    answer: 2,
+    explanation: "First 7 is in the ten-thousands place (value 70,000). Second 7 is in the tens place (value 70). Difference: 70,000 − 70 = 69,930."
+  },
+
+  // UNIT 2: Multiples & Factors (5 questions)
+  {
+    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
+    question: "What is the Lowest Common Multiple (LCM) of 4 and 9?",
+    options: ["13", "18", "27", "36"],
+    answer: 3,
+    explanation: "Multiples of 4: 4, 8, 12, 16, 20, 24, 28, 32, 36... Multiples of 9: 9, 18, 27, 36... The first common multiple is 36."
+  },
+  {
+    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
+    question: "What is the Highest Common Factor (HCF) of 24 and 36?",
+    options: ["4", "6", "8", "12"],
+    answer: 3,
+    explanation: "Factors of 24: 1,2,3,4,6,8,12,24. Factors of 36: 1,2,3,4,6,9,12,18,36. The largest common factor is 12."
+  },
+  {
+    unit: "Multiples & Factors", unitNum: 2, type: "input",
+    question: "A number is a multiple of both 3 and 8. It is between 40 and 60. What is it?",
+    answer: "48", accept: ["48"],
+    explanation: "Multiples of 8 between 40–60: 48, 56. Check which is also a multiple of 3: 48 ÷ 3 = 16 ✓. Answer: 48."
+  },
+  {
+    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
+    question: "Which of the following numbers is a factor of BOTH 42 and 56?",
+    options: ["6", "7", "8", "9"],
+    answer: 1,
+    explanation: "42 ÷ 7 = 6 ✓ and 56 ÷ 7 = 8 ✓. So 7 is a common factor. Check 6: 56 ÷ 6 = not whole ✗."
+  },
+  {
+    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
+    question: "How many factors does 36 have in total?",
+    options: ["7", "8", "9", "10"],
+    answer: 2,
+    explanation: "Factors of 36: 1, 2, 3, 4, 6, 9, 12, 18, 36. That's 9 factors in total."
+  },
+
+  // UNIT 3: Quadrilaterals (5 questions)
+  {
+    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
+    question: "A parallelogram has one angle of 65°. What are the OTHER three angles?",
+    options: ["65°, 115°, 115°", "65°, 65°, 115°", "115°, 115°, 65°", "65°, 65°, 65°"],
+    answer: 0,
+    explanation: "In a parallelogram, opposite angles are equal and co-interior angles add to 180°. So: 65°, 115°, 65°, 115°."
+  },
+  {
+    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
+    question: "Which quadrilateral has EXACTLY ONE pair of parallel sides?",
+    options: ["Rhombus", "Parallelogram", "Trapezium", "Rectangle"],
+    answer: 2,
+    explanation: "A trapezium has exactly one pair of parallel sides. The other shapes listed all have two pairs."
+  },
+  {
+    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
+    question: "The angles of a quadrilateral always add up to:",
+    options: ["180°", "270°", "360°", "540°"],
+    answer: 2,
+    explanation: "The interior angles of any quadrilateral always sum to 360°. You can split it into two triangles (2 × 180° = 360°)."
+  },
+  {
+    unit: "Quadrilaterals", unitNum: 3, type: "input",
+    question: "Three angles of a quadrilateral are 90°, 85°, and 110°. What is the fourth angle?",
+    answer: "75", accept: ["75", "75°"],
+    explanation: "All four angles must add up to 360°. 360° − 90° − 85° − 110° = 75°."
+  },
+  {
+    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
+    question: "A rhombus and a square both have 4 equal sides. What does a SQUARE have that a RHOMBUS may NOT have?",
+    options: ["4 equal sides", "2 pairs of parallel sides", "4 right angles (90°)", "Diagonals that bisect each other"],
+    answer: 2,
+    explanation: "A square has all angles equal to 90°. A rhombus has equal sides but its angles are NOT necessarily 90°."
+  },
+
+  // UNIT 4: Angles (5 questions)
+  {
+    unit: "Angles", unitNum: 4, type: "mcq",
+    question: "Angles on a straight line add up to 180°. If one angle is 47°, what is the other?",
+    options: ["113°", "133°", "143°", "153°"],
+    answer: 1,
+    explanation: "180° − 47° = 133°. Angles on a straight line are supplementary and always add to 180°."
+  },
+  {
+    unit: "Angles", unitNum: 4, type: "input",
+    question: "Angles around a point add up to 360°. Three angles at a point are 125°, 90°, and 80°. What is the fourth angle?",
+    answer: "65", accept: ["65", "65°"],
+    explanation: "360° − 125° − 90° − 80° = 65°."
+  },
+  {
+    unit: "Angles", unitNum: 4, type: "mcq",
+    question: "What type of angle is 215°?",
+    options: ["Acute", "Obtuse", "Reflex", "Right"],
+    answer: 2,
+    explanation: "A reflex angle is greater than 180° and less than 360°. 215° is in that range."
+  },
+  {
+    unit: "Angles", unitNum: 4, type: "mcq",
+    question: "A clock shows 3:00. What is the angle between the minute hand and the hour hand?",
+    options: ["60°", "90°", "120°", "180°"],
+    answer: 1,
+    explanation: "At 3:00, the hour hand points to 3 and the minute hand points to 12. There are 3 hour-sections out of 12, and 360° ÷ 12 × 3 = 90°."
+  },
+  {
+    unit: "Angles", unitNum: 4, type: "input",
+    question: "An equilateral triangle has three equal angles. What is each angle in degrees?",
+    answer: "60", accept: ["60", "60°"],
+    explanation: "All triangles have angles summing to 180°. An equilateral triangle: 180° ÷ 3 = 60° each."
+  },
+
+  // UNIT 5: Line Graphs (5 questions)
+  {
+    unit: "Line Graphs", unitNum: 5, type: "mcq",
+    question: "A line graph shows a plant's height (cm): Week 1=4, Week 2=7, Week 3=11, Week 4=16, Week 5=22. Between which two weeks did it grow the MOST?",
+    options: ["Week 1 to Week 2", "Week 2 to Week 3", "Week 3 to Week 4", "Week 4 to Week 5"],
+    answer: 3,
+    explanation: "Growth: W1→W2 = 3cm, W2→W3 = 4cm, W3→W4 = 5cm, W4→W5 = 6cm. The largest growth is between Week 4 and Week 5."
+  },
+  {
+    unit: "Line Graphs", unitNum: 5, type: "input",
+    question: "A line graph shows temperatures: Mon=18°C, Tue=22°C, Wed=15°C, Thu=25°C, Fri=20°C. What is the mean (average) temperature?",
+    answer: "20", accept: ["20", "20°C", "20°"],
+    explanation: "Mean = (18 + 22 + 15 + 25 + 20) ÷ 5 = 100 ÷ 5 = 20°C."
+  },
+  {
+    unit: "Line Graphs", unitNum: 5, type: "mcq",
+    question: "A graph shows sales: Jan=350, Feb=280, Mar=410, Apr=390. Between which months did sales DROP?",
+    options: ["Jan to Feb", "Feb to Mar", "Mar to Apr", "All of them"],
+    answer: 0,
+    explanation: "Jan (350) to Feb (280): 350 > 280, so sales DROPPED. Feb to Mar: increased. Mar to Apr: decreased."
+  },
+  {
+    unit: "Line Graphs", unitNum: 5, type: "mcq",
+    question: "A line graph's vertical axis goes from 0 to 100 with 5 equal intervals marked. What does each small interval represent?",
+    options: ["5", "10", "15", "20"],
+    answer: 3,
+    explanation: "From 0 to 100 with 5 equal intervals: each interval = 100 ÷ 5 = 20."
+  },
+  {
+    unit: "Line Graphs", unitNum: 5, type: "input",
+    question: "A shop sold 68 items on Monday, and 20% more on Tuesday. How many items did they sell on Tuesday?",
+    answer: "81.6", accept: ["81.6", "82", "81"],
+    explanation: "20% of 68 = 68 × 0.2 = 13.6. 68 + 13.6 = 81.6 (or approximately 82 items if rounded)."
+  },
+
+  // UNIT 6: Time (5 questions)
+  {
+    unit: "Time", unitNum: 6, type: "mcq",
+    question: "A train leaves at 08:45 and arrives 3 hours 55 minutes later. What time does it arrive?",
+    options: ["11:40", "12:30", "12:40", "12:45"],
+    answer: 2,
+    explanation: "08:45 + 3h = 11:45. 11:45 + 55min = 12:40."
+  },
+  {
+    unit: "Time", unitNum: 6, type: "input",
+    question: "How many hours are there in one full week (7 days)?",
+    answer: "168", accept: ["168"],
+    explanation: "1 day = 24 hours. 7 × 24 = 168 hours."
+  },
+  {
+    unit: "Time", unitNum: 6, type: "mcq",
+    question: "Alexis started her homework at 16:20 and finished at 18:05. How long did she work?",
+    options: ["1 hour 25 minutes", "1 hour 35 minutes", "1 hour 45 minutes", "2 hours 5 minutes"],
+    answer: 2,
+    explanation: "From 16:20 to 17:20 = 1 hour. From 17:20 to 18:05 = 45 minutes. Total = 1 hour 45 minutes."
+  },
+  {
+    unit: "Time", unitNum: 6, type: "mcq",
+    question: "What is 23:15 in 12-hour clock format?",
+    options: ["11:15 a.m.", "11:15 p.m.", "12:15 p.m.", "1:15 p.m."],
+    answer: 1,
+    explanation: "23:15 is after midday. Subtract 12: 23 − 12 = 11. So 23:15 = 11:15 p.m."
+  },
+  {
+    unit: "Time", unitNum: 6, type: "input",
+    question: "How many minutes are in 4 hours and 40 minutes?",
+    answer: "280", accept: ["280"],
+    explanation: "4 hours = 240 minutes. 240 + 40 = 280 minutes."
+  },
+
+  // UNIT 7: Decimals (5 questions)
+  {
+    unit: "Decimals", unitNum: 7, type: "mcq",
+    question: "Order these decimals from smallest to largest: 3.07, 3.7, 3.70, 3.07",
+    options: ["3.07 < 3.7 = 3.70", "3.7 < 3.70 < 3.07", "3.07 < 3.70 < 3.7", "3.07 = 3.7 < 3.70"],
+    answer: 0,
+    explanation: "3.07 is less than 3.7. And 3.7 = 3.70 (they are equal). So: 3.07 < 3.7 = 3.70."
+  },
+  {
+    unit: "Decimals", unitNum: 7, type: "input",
+    question: "Calculate: 4.56 + 2.37 = ?",
+    answer: "6.93", accept: ["6.93"],
+    explanation: "4.56 + 2.37: units 4+2=6, tenths 5+3=8, hundredths 6+7=13 (carry 1). Result: 6.93."
+  },
+  {
+    unit: "Decimals", unitNum: 7, type: "mcq",
+    question: "Which of these is equivalent to 0.75?",
+    options: ["3/5", "3/4", "7/5", "7/10"],
+    answer: 1,
+    explanation: "0.75 = 75/100 = 3/4. You can check: 3 ÷ 4 = 0.75 ✓"
+  },
+  {
+    unit: "Decimals", unitNum: 7, type: "input",
+    question: "A bag of apples weighs 2.85 kg. A bag of oranges weighs 1.67 kg. What is the total weight?",
+    answer: "4.52", accept: ["4.52", "4.52kg", "4.52 kg"],
+    explanation: "2.85 + 1.67 = 4.52 kg."
+  },
+  {
+    unit: "Decimals", unitNum: 7, type: "mcq",
+    question: "What is 7.4 − 2.86?",
+    options: ["4.44", "4.54", "5.46", "4.46"],
+    answer: 1,
+    explanation: "7.40 − 2.86 = 4.54."
+  },
+
+  // UNIT 8: Multiplication (5 questions)
+  {
+    unit: "Multiplication", unitNum: 8, type: "input",
+    question: "Calculate: 47 × 36 = ?",
+    answer: "1692", accept: ["1692", "1,692", "1 692"],
+    explanation: "47 × 36: 47×6=282, 47×30=1410. 282 + 1410 = 1,692."
+  },
+  {
+    unit: "Multiplication", unitNum: 8, type: "input",
+    question: "A cinema has 28 rows with 35 seats each. How many seats are there in total?",
+    answer: "980", accept: ["980"],
+    explanation: "28 × 35 = 980 seats."
+  },
+  {
+    unit: "Multiplication", unitNum: 8, type: "mcq",
+    question: "Estimate: 49 × 62 is closest to:",
+    options: ["2,400", "2,800", "3,000", "3,200"],
+    answer: 2,
+    explanation: "Round to nearest 10: 50 × 60 = 3,000. So 49 × 62 ≈ 3,000."
+  },
+  {
+    unit: "Multiplication", unitNum: 8, type: "input",
+    question: "Calculate: 125 × 8 = ?",
+    answer: "1000", accept: ["1000", "1,000"],
+    explanation: "125 × 8 = 1,000. A handy fact: 125 × 4 × 2 = 500 × 2 = 1,000."
+  },
+  {
+    unit: "Multiplication", unitNum: 8, type: "mcq",
+    question: "A baker makes 24 batches of cookies with 36 cookies in each batch. How many cookies in total?",
+    options: ["760", "864", "840", "900"],
+    answer: 1,
+    explanation: "24 × 36 = 864 cookies."
+  }
+];
+
+const unitNames = [
+  "5-Digit Numbers", "Multiples & Factors", "Quadrilaterals", "Angles",
+  "Line Graphs", "Time", "Decimals", "Multiplication"
+];
+
+let correctTotal = 0, wrongTotal = 0, answeredTotal = 0;
+let answered = new Array(questions.length).fill(false);
+
+function init() {
+  buildTopicNav();
+  renderQuestions();
+  updateScores();
+}
+
+function buildTopicNav() {
+  const nav = document.getElementById('topicNav');
+  let html = '<button class="topic-btn active" onclick="filterTopic(\'all\', this)">All</button>';
+  unitNames.forEach((name, i) => {
+    html += '<button class="topic-btn" onclick="filterTopic(' + (i+1) + ', this)">' + name + '</button>';
+  });
+  nav.innerHTML = html;
+}
+
+function filterTopic(unit, btn) {
+  document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.question-card').forEach(card => {
+    card.style.display = (unit === "all" || parseInt(card.dataset.unit) === unit) ? 'block' : 'none';
+  });
+}
+
+function renderQuestions() {
+  const container = document.getElementById('quizContainer');
+  const letters = ['A','B','C','D'];
+  let html = '';
+  questions.forEach((q, idx) => {
+    html += '<div class="question-card" id="qcard-' + idx + '" data-unit="' + q.unitNum + '">';
+    html += '<div class="q-header"><div class="q-num">' + (idx+1) + '</div><span class="q-topic">Unit ' + q.unitNum + ': ' + q.unit + '</span></div>';
+    html += '<div class="q-text">' + q.question + '</div>';
+    if (q.type === "mcq") {
+      html += '<div class="options" id="options-' + idx + '">';
+      q.options.forEach((opt, oi) => {
+        html += '<button class="option-btn" onclick="selectMCQ(' + idx + ',' + oi + ',this)"><span class="letter">' + letters[oi] + '</span><span>' + opt + '</span></button>';
+      });
+      html += '</div>';
+    } else {
+      html += '<div class="input-answer" id="input-' + idx + '"><input type="text" id="inp-' + idx + '" placeholder="Type your answer…" onkeypress="if(event.key===\'Enter\')checkInput(' + idx + ')"><button class="check-btn" id="checkbtn-' + idx + '" onclick="checkInput(' + idx + ')">Check</button></div>';
+    }
+    html += '<div class="feedback" id="fb-' + idx + '"></div></div>';
+  });
+  container.innerHTML = html;
+}
+
+function selectMCQ(qIdx, optIdx, btn) {
+  if (answered[qIdx]) return;
+  playClickSound();
+  answered[qIdx] = true;
+  answeredTotal++;
+  const q = questions[qIdx];
+  const card = document.getElementById('qcard-' + qIdx);
+  const buttons = document.querySelectorAll('#options-' + qIdx + ' .option-btn');
+  const fb = document.getElementById('fb-' + qIdx);
+  buttons.forEach(b => b.classList.add('disabled'));
+  if (optIdx === q.answer) {
+    correctTotal++;
+    btn.classList.add('correct-answer');
+    card.classList.add('answered-correct');
+    fb.className = 'feedback correct';
+    fb.innerHTML = '✅ Correct! ' + q.explanation;
+    playCorrectSound();
+    const rect = btn.getBoundingClientRect();
+    spawnConfetti(rect.left + rect.width/2, rect.top);
+  } else {
+    wrongTotal++;
+    btn.classList.add('wrong-answer');
+    buttons[q.answer].classList.add('correct-answer');
+    card.classList.add('answered-wrong');
+    fb.className = 'feedback wrong';
+    fb.innerHTML = '❌ Not quite. ' + q.explanation;
+    playWrongSound();
+  }
+  updateScores();
+  checkCompletion();
+}
+
+function checkInput(qIdx) {
+  if (answered[qIdx]) return;
+  const inp = document.getElementById('inp-' + qIdx);
+  const val = inp.value.trim();
+  if (!val) return;
+  playClickSound();
+  answered[qIdx] = true;
+  answeredTotal++;
+  const q = questions[qIdx];
+  const card = document.getElementById('qcard-' + qIdx);
+  const fb = document.getElementById('fb-' + qIdx);
+  const checkBtn = document.getElementById('checkbtn-' + qIdx);
+  inp.disabled = true;
+  checkBtn.disabled = true;
+  const normalised = val.replace(/\s/g, '').toLowerCase();
+  const isCorrect = q.accept.some(a => a.replace(/\s/g, '').toLowerCase() === normalised);
+  if (isCorrect) {
+    correctTotal++;
+    inp.classList.add('correct');
+    card.classList.add('answered-correct');
+    fb.className = 'feedback correct';
+    fb.innerHTML = '✅ Correct! ' + q.explanation;
+    playCorrectSound();
+    const rect = inp.getBoundingClientRect();
+    spawnConfetti(rect.left + rect.width/2, rect.top);
+  } else {
+    wrongTotal++;
+    inp.classList.add('wrong');
+    card.classList.add('answered-wrong');
+    fb.className = 'feedback wrong';
+    fb.innerHTML = '❌ The answer is <strong>' + q.answer + '</strong>. ' + q.explanation;
+    playWrongSound();
+  }
+  updateScores();
+  checkCompletion();
+}
+
+function updateScores() {
+  document.getElementById('correctCount').textContent = correctTotal;
+  document.getElementById('wrongCount').textContent = wrongTotal;
+  document.getElementById('totalAnswered').textContent = answeredTotal;
+  const pct = Math.round((answeredTotal / questions.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = answeredTotal + ' / ' + questions.length + ' completed';
+  unitNames.forEach((name, i) => {
+    const unitQs = questions.filter(q => q.unitNum === i+1);
+    const allDone = unitQs.every(q => answered[questions.indexOf(q)]);
+    const btns = document.querySelectorAll('.topic-btn');
+    if (allDone && btns[i+1]) btns[i+1].classList.add('done');
+  });
+}
+
+function checkCompletion() {
+  if (answeredTotal === questions.length) {
+    setTimeout(() => {
+      playCompleteSound();
+      bigConfetti();
+      showResults();
+    }, 600);
+  }
+}
+
+function showResults() {
+  const section = document.getElementById('resultsSection');
+  section.classList.add('visible');
+  const pct = Math.round((correctTotal / questions.length) * 100);
+  let emoji, title;
+  if (pct >= 90) { emoji = '⭐'; title = 'KILL THIS LOVE!'; }
+  else if (pct >= 75) { emoji = '💖'; title = 'HOW YOU LIKE THAT!'; }
+  else if (pct >= 50) { emoji = '✨'; title = 'DDU-DU DDU-DU!'; }
+  else { emoji = '💪'; title = 'KEEP PRACTISING, BLINK!'; }
+  document.getElementById('resultsEmoji').textContent = emoji;
+  document.getElementById('resultsTitle').textContent = title;
+  document.getElementById('resultsScore').textContent = 'You got ' + correctTotal + ' out of ' + questions.length + ' correct (' + pct + '%)';
+  let bHtml = '';
+  unitNames.forEach((name, i) => {
+    const unitQs = questions.filter(q => q.unitNum === i+1);
+    let uc = 0;
+    unitQs.forEach(q => { if (document.getElementById('qcard-' + questions.indexOf(q)).classList.contains('answered-correct')) uc++; });
+    const cls = uc >= Math.ceil(unitQs.length * 0.6) ? 'good' : 'needs-work';
+    bHtml += '<span class="breakdown-chip ' + cls + '">' + name + ': ' + uc + '/' + unitQs.length + '</span>';
+  });
+  document.getElementById('resultsBreakdown').innerHTML = bHtml;
+  section.scrollIntoView({ behavior: 'smooth' });
+}
+
+function restart() {
+  playClickSound();
+  correctTotal = 0; wrongTotal = 0; answeredTotal = 0;
+  answered = new Array(questions.length).fill(false);
+  document.getElementById('resultsSection').classList.remove('visible');
+  document.querySelectorAll('.topic-btn').forEach((b, i) => { b.classList.remove('done', 'active'); if (i === 0) b.classList.add('active'); });
+  renderQuestions();
+  updateScores();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+init();
+</script>
+</body>
+</html>
