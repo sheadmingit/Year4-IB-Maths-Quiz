@@ -135,6 +135,54 @@
     position: relative;
   }
 
+  /* 🐕 CARTOON DOG ELEMENTS */
+  .dog-emoji {
+    display: inline-block;
+    animation: dogWiggle 1.5s ease-in-out infinite;
+    margin: 0 6px;
+  }
+
+  @keyframes dogWiggle {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-5deg) scale(1.1); }
+    75% { transform: rotate(5deg) scale(1.1); }
+  }
+
+  .paw-print {
+    position: absolute;
+    opacity: 0.08;
+    pointer-events: none;
+    font-size: 1.5rem;
+  }
+
+  .dog-mascot {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    font-size: 3.5rem;
+    animation: dogBounce 2.5s ease-in-out infinite;
+    cursor: pointer;
+    filter: drop-shadow(0 4px 12px rgba(255, 45, 135, 0.3));
+    z-index: 50;
+    transition: transform 0.3s ease;
+  }
+
+  @keyframes dogBounce {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(-5deg); }
+  }
+
+  .dog-mascot:hover {
+    animation: dogBounceHappy 0.5s ease-in-out infinite;
+    transform: scale(1.15);
+  }
+
+  @keyframes dogBounceHappy {
+    0%, 100% { transform: translateY(0) scale(1.15) rotate(0deg); }
+    25% { transform: translateY(-15px) rotate(-8deg) scale(1.15); }
+    75% { transform: translateY(-15px) rotate(8deg) scale(1.15); }
+  }
+
   /* SCORE BAR */
   .score-bar {
     display: flex;
@@ -513,7 +561,17 @@
     background: linear-gradient(90deg, var(--hot-pink), var(--pink-light), var(--hot-pink));
   }
 
-  .results-emoji { font-size: 3.5rem; margin-bottom: 16px; }
+  .results-emoji {
+    font-size: 4.5rem;
+    margin-bottom: 16px;
+    animation: celebrateDog 0.6s ease-in-out;
+  }
+
+  @keyframes celebrateDog {
+    0% { transform: scale(0.5) rotate(-20deg); opacity: 0; }
+    50% { transform: scale(1.2) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
 
   .results-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -626,10 +684,18 @@
   <div class="cloud"></div>
 </div>
 
+<!-- 🐕 Cute Dog Mascot -->
+<div class="dog-mascot" title="Happy dog says: You can do this! 🐕">🐕</div>
+
 <div class="header">
-  <div class="stage-tag">⚡ STAGE 2 — CHALLENGE</div>
+  <div class="stage-tag">⚡ STAGE 2 — CHALLENGE 🐕</div>
   <h1>YEAR 4 <span>MATHS</span> REVISION</h1>
-  <p class="subtitle">IB Programme • 8 Units • 40 HARDER Questions</p>
+  <p class="subtitle">🐶 IB Programme • 8 Units • 40 HARDER Questions 🐶</p>
+  <div style="margin-top: 12px;">
+    <span class="dog-emoji">🐕</span>
+    <span class="dog-emoji">🐶</span>
+    <span class="dog-emoji">🐕</span>
+  </div>
 </div>
 
 <div class="stage-link-section">
@@ -1162,7 +1228,7 @@ function selectMCQ(qIdx, optIdx, btn) {
     btn.classList.add('correct-answer');
     card.classList.add('answered-correct');
     fb.className = 'feedback correct';
-    fb.innerHTML = '✅ Correct! ' + q.explanation;
+    fb.innerHTML = '🐕 Yay! ' + q.explanation;
     playCorrectSound();
     const rect = btn.getBoundingClientRect();
     spawnConfetti(rect.left + rect.width/2, rect.top);
@@ -1172,7 +1238,7 @@ function selectMCQ(qIdx, optIdx, btn) {
     buttons[q.answer].classList.add('correct-answer');
     card.classList.add('answered-wrong');
     fb.className = 'feedback wrong';
-    fb.innerHTML = '❌ Not quite. ' + q.explanation;
+    fb.innerHTML = '🐶 Oops! ' + q.explanation;
     playWrongSound();
   }
   updateScores();
@@ -1200,7 +1266,7 @@ function checkInput(qIdx) {
     inp.classList.add('correct');
     card.classList.add('answered-correct');
     fb.className = 'feedback correct';
-    fb.innerHTML = '✅ Correct! ' + q.explanation;
+    fb.innerHTML = '🐕 Yay! ' + q.explanation;
     playCorrectSound();
     const rect = inp.getBoundingClientRect();
     spawnConfetti(rect.left + rect.width/2, rect.top);
@@ -1209,7 +1275,7 @@ function checkInput(qIdx) {
     inp.classList.add('wrong');
     card.classList.add('answered-wrong');
     fb.className = 'feedback wrong';
-    fb.innerHTML = '❌ The answer is <strong>' + q.answer + '</strong>. ' + q.explanation;
+    fb.innerHTML = '🐶 The answer is <strong>' + q.answer + '</strong>. ' + q.explanation;
     playWrongSound();
   }
   updateScores();
@@ -1246,10 +1312,10 @@ function showResults() {
   section.classList.add('visible');
   const pct = Math.round((correctTotal / questions.length) * 100);
   let emoji, title;
-  if (pct >= 90) { emoji = '⭐'; title = 'KILL THIS LOVE!'; }
-  else if (pct >= 75) { emoji = '💖'; title = 'HOW YOU LIKE THAT!'; }
-  else if (pct >= 50) { emoji = '✨'; title = 'DDU-DU DDU-DU!'; }
-  else { emoji = '💪'; title = 'KEEP PRACTISING, BLINK!'; }
+  if (pct >= 90) { emoji = '🐕'; title = 'KILL THIS LOVE! YOU\'RE A CHAMPION DOG!'; }
+  else if (pct >= 75) { emoji = '🐕'; title = 'HOW YOU LIKE THAT! PAWSOME CHALLENGE!'; }
+  else if (pct >= 50) { emoji = '🐶'; title = 'DDU-DU DDU-DU! YOU\'RE LEARNING FAST!'; }
+  else { emoji = '🐶'; title = 'KEEP PRACTISING, BLINK! YOU GOT THIS!'; }
   document.getElementById('resultsEmoji').textContent = emoji;
   document.getElementById('resultsTitle').textContent = title;
   document.getElementById('resultsScore').textContent = 'You got ' + correctTotal + ' out of ' + questions.length + ' correct (' + pct + '%)';
