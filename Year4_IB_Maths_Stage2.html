@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Year 4 IB Maths Revision — Stage 2: CHALLENGE</title>
+<title>Year 4 IB Maths Stage 2 — BLACKPINK Edition</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -35,7 +35,16 @@
     overflow-x: hidden;
   }
 
-  /* Floating clouds — subtle BLACKPINK touch */
+  /* HEADER */
+  .header {
+    position: relative;
+    padding: 50px 20px 60px;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(180deg, #2a1a25 0%, var(--bg) 100%);
+  }
+
+  /* Floating clouds */
   .clouds {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -47,36 +56,27 @@
 
   .cloud {
     position: absolute;
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.4);
     border-radius: 50px;
-    opacity: 0.3;
+    opacity: 0.5;
     animation: floatCloud linear infinite;
   }
   .cloud::before, .cloud::after {
     content: '';
     position: absolute;
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.4);
     border-radius: 50%;
   }
   .cloud:nth-child(1) { width:120px; height:40px; top:20px; animation-duration:35s; animation-delay:-5s; }
   .cloud:nth-child(1)::before { width:60px; height:60px; top:-30px; left:15px; }
   .cloud:nth-child(1)::after { width:40px; height:40px; top:-20px; left:55px; }
-  .cloud:nth-child(2) { width:90px; height:30px; top:50px; animation-duration:50s; animation-delay:-20s; opacity:0.15; }
+  .cloud:nth-child(2) { width:90px; height:30px; top:50px; animation-duration:50s; animation-delay:-20s; opacity:0.3; }
   .cloud:nth-child(2)::before { width:45px; height:45px; top:-22px; left:10px; }
   .cloud:nth-child(2)::after { width:30px; height:30px; top:-15px; left:40px; }
 
   @keyframes floatCloud {
     from { transform: translateX(-200px); }
     to { transform: translateX(calc(100vw + 200px)); }
-  }
-
-  /* HEADER */
-  .header {
-    position: relative;
-    padding: 50px 20px 60px;
-    text-align: center;
-    overflow: hidden;
-    background: linear-gradient(180deg, #1a0a12 0%, var(--bg) 100%);
   }
 
   .header::before {
@@ -91,18 +91,18 @@
     pointer-events: none;
   }
 
-  .stage-tag {
+  .bp-tag {
     display: inline-block;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 0.85rem;
     letter-spacing: 6px;
     text-transform: uppercase;
-    color: var(--hot-pink);
-    border: 2px solid var(--hot-pink);
+    color: var(--pink);
+    border: 2px solid var(--pink);
     padding: 6px 18px;
     margin-bottom: 16px;
     position: relative;
-    box-shadow: 0 4px 0px rgba(255, 0, 127, 0.3);
+    box-shadow: 0 4px 0px rgba(255, 45, 135, 0.3);
   }
 
   .header h1 {
@@ -118,12 +118,6 @@
 
   .header h1 span {
     color: var(--pink);
-    animation: pulse-text 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse-text {
-    0%, 100% { text-shadow: 0 0 20px var(--pink-glow); }
-    50% { text-shadow: 0 0 40px var(--pink-glow); }
   }
 
   .header .subtitle {
@@ -181,6 +175,13 @@
     0%, 100% { transform: translateY(0) scale(1.15) rotate(0deg); }
     25% { transform: translateY(-15px) rotate(-8deg) scale(1.15); }
     75% { transform: translateY(-15px) rotate(8deg) scale(1.15); }
+  }
+
+  .paw-trail {
+    position: absolute;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: -1;
   }
 
   /* SCORE BAR */
@@ -320,14 +321,13 @@
 
   .question-card {
     background: var(--bg-card);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 28px;
     margin-bottom: 18px;
     animation: slideIn 0.35s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 0px rgba(0,0,0,0.2);
   }
 
   .question-card::before {
@@ -466,7 +466,7 @@
     min-width: 150px;
     padding: 12px 16px;
     border-radius: 12px;
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     background: rgba(255,255,255,0.03);
     font-family: 'Outfit', sans-serif;
     font-size: 1rem;
@@ -474,11 +474,10 @@
     color: var(--text);
     outline: none;
     transition: all 0.2s;
-    box-shadow: 0 2px 0px #1a1a1a;
   }
 
   .input-answer input::placeholder { color: #555; }
-  .input-answer input:focus { border-color: var(--pink); box-shadow: 0 3px 0px #cc1f66; }
+  .input-answer input:focus { border-color: var(--pink); box-shadow: 0 0 16px var(--pink-glow); }
   .input-answer input.correct { border-color: var(--correct); background: var(--correct-bg); }
   .input-answer input.wrong { border-color: var(--wrong); background: var(--wrong-bg); }
 
@@ -543,12 +542,11 @@
 
   .results-card {
     background: var(--bg-card);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 48px 40px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 8px 0px rgba(0,0,0,0.3);
   }
 
   .results-card::before {
@@ -628,7 +626,6 @@
     cursor: pointer;
     transition: all 0.25s;
     text-transform: uppercase;
-    box-shadow: 0 4px 0px rgba(255,45,135,0.3);
   }
 
   .restart-btn:hover {
@@ -637,34 +634,14 @@
     box-shadow: 0 0 30px var(--pink-glow);
   }
 
-  .stage-link-section {
-    text-align: center;
-    margin: 16px 0 20px;
+  /* Decorative elements */
+  .deco-line {
+    width: 60px;
+    height: 3px;
+    background: var(--pink);
+    margin: 12px auto 0;
     position: relative;
-    z-index: 2;
-  }
-
-  .stage-link-section a {
-    display: inline-block;
-    padding: 10px 24px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    background: var(--bg-card);
-    border: 2px solid var(--border);
-    box-shadow: 0 3px 0px #1a1a1a;
-    transition: all 0.2s;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .stage-link-section a:hover {
-    border-color: var(--pink);
-    color: var(--pink);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 0px #2a2a2a;
+    box-shadow: 0 0 10px var(--pink-glow);
   }
 
   @media (max-width: 600px) {
@@ -672,7 +649,7 @@
     .question-card { padding: 20px; }
     .score-card { padding: 10px 18px; min-width: 85px; }
     .score-card .num { font-size: 1.6rem; }
-    .check-btn { padding: 12px 18px; font-size: 0.9rem; }
+    .bp-tag { font-size: 0.7rem; letter-spacing: 4px; }
   }
 </style>
 </head>
@@ -685,21 +662,18 @@
 </div>
 
 <!-- 🐕 Cute Dog Mascot -->
-<div class="dog-mascot" title="Happy dog says: You can do this! 🐕">🐕</div>
+<div class="dog-mascot" title="Happy dog says: You got this! 🐕">🐕</div>
 
 <div class="header">
-  <div class="stage-tag">⚡ STAGE 2 — CHALLENGE 🐕</div>
-  <h1>YEAR 4 <span>MATHS</span> REVISION</h1>
-  <p class="subtitle">🐶 IB Programme • 8 Units • 40 HARDER Questions 🐶</p>
+  <div class="bp-tag">🐕 BLACKPINK IN YOUR AREA 🐕</div>
+  <h1>STAGE <span>2</span> — MATHS CHALLENGE</h1>
+  <p class="subtitle">🐶 IB Programme &bull; 8 Units &bull; 40 Advanced Questions 🐶</p>
+  <div class="deco-line"></div>
   <div style="margin-top: 12px;">
     <span class="dog-emoji">🐕</span>
     <span class="dog-emoji">🐶</span>
     <span class="dog-emoji">🐕</span>
   </div>
-</div>
-
-<div class="stage-link-section">
-  <a href="Year4_IB_Maths_Revision.html">← Back to Stage 1</a>
 </div>
 
 <div class="score-bar">
@@ -730,9 +704,6 @@
 <div id="confettiWrap" style="position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:999;"></div>
 
 <script>
-// ============================================================
-// SOUND ENGINE — Web Audio API (K-pop vibes!)
-// ============================================================
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 let audioCtx = null;
 
@@ -744,7 +715,6 @@ function getAudioCtx() {
 function playCorrectSound() {
   try {
     const ctx = getAudioCtx();
-    // Bright ascending K-pop chime
     const notes = [523.25, 659.25, 783.99, 1046.50];
     notes.forEach((freq, i) => {
       const osc = ctx.createOscillator();
@@ -799,7 +769,6 @@ function playClickSound() {
 function playCompleteSound() {
   try {
     const ctx = getAudioCtx();
-    // Victory fanfare
     const melody = [523.25, 659.25, 783.99, 1046.50, 1318.51];
     melody.forEach((freq, i) => {
       const osc = ctx.createOscillator();
@@ -818,9 +787,6 @@ function playCompleteSound() {
   } catch(e) {}
 }
 
-// ============================================================
-// CONFETTI & EFFECTS
-// ============================================================
 function spawnConfetti(x, y) {
   const wrap = document.getElementById('confettiWrap');
   const colors = ['#ff2d87', '#ff69a8', '#ff007f', '#00e09e', '#ff4757'];
@@ -878,311 +844,59 @@ function bigConfetti() {
 }
 
 const questions = [
-  // UNIT 1: 5-Digit Numbers (5 questions)
-  {
-    unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
-    question: "Which number is 1,000 more than 49,356?",
-    options: ["39,356", "49,456", "50,356", "49,366"],
-    answer: 2,
-    explanation: "Adding 1,000 to 49,356: 49,356 + 1,000 = 50,356. Only the ten-thousands digit changes from 4 to 5."
-  },
-  {
-    unit: "5-Digit Numbers", unitNum: 1, type: "input",
-    question: "Round 76,482 to the nearest thousand.",
-    answer: "76000", accept: ["76000", "76,000", "76 000"],
-    explanation: "Look at the hundreds digit: 4 < 5, so we round down. 76,482 → 76,000."
-  },
-  {
-    unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
-    question: "Order these from smallest to largest: 32,819 | 32,198 | 32,981 | 32,189",
-    options: ["32,189 < 32,198 < 32,819 < 32,981", "32,198 < 32,189 < 32,819 < 32,981", "32,819 < 32,981 < 32,189 < 32,198", "32,981 > 32,819 > 32,198 > 32,189"],
-    answer: 0,
-    explanation: "All start with 32 — compare hundreds: 1 < 1 (tie, look at tens: 8 vs 9) → 32,189 < 32,198 < 32,819 < 32,981."
-  },
-  {
-    unit: "5-Digit Numbers", unitNum: 1, type: "input",
-    question: "What is 10,000 less than 83,060?",
-    answer: "73060", accept: ["73060", "73,060", "73 060"],
-    explanation: "83,060 − 10,000 = 73,060. Subtract 1 from the ten-thousands digit: 8 − 1 = 7."
-  },
-  {
-    unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
-    question: "The digit 7 appears twice in the number 70,174. What is the DIFFERENCE in their values?",
-    options: ["63", "693", "6,930", "69,300"],
-    answer: 2,
-    explanation: "First 7 is in the ten-thousands place (value 70,000). Second 7 is in the tens place (value 70). Difference: 70,000 − 70 = 69,930."
-  },
-
-  // UNIT 2: Multiples & Factors (5 questions)
-  {
-    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
-    question: "What is the Lowest Common Multiple (LCM) of 4 and 9?",
-    options: ["13", "18", "27", "36"],
-    answer: 3,
-    explanation: "Multiples of 4: 4, 8, 12, 16, 20, 24, 28, 32, 36... Multiples of 9: 9, 18, 27, 36... The first common multiple is 36."
-  },
-  {
-    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
-    question: "What is the Highest Common Factor (HCF) of 24 and 36?",
-    options: ["4", "6", "8", "12"],
-    answer: 3,
-    explanation: "Factors of 24: 1,2,3,4,6,8,12,24. Factors of 36: 1,2,3,4,6,9,12,18,36. The largest common factor is 12."
-  },
-  {
-    unit: "Multiples & Factors", unitNum: 2, type: "input",
-    question: "A number is a multiple of both 3 and 8. It is between 40 and 60. What is it?",
-    answer: "48", accept: ["48"],
-    explanation: "Multiples of 8 between 40–60: 48, 56. Check which is also a multiple of 3: 48 ÷ 3 = 16 ✓. Answer: 48."
-  },
-  {
-    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
-    question: "Which of the following numbers is a factor of BOTH 42 and 56?",
-    options: ["6", "7", "8", "9"],
-    answer: 1,
-    explanation: "42 ÷ 7 = 6 ✓ and 56 ÷ 7 = 8 ✓. So 7 is a common factor. Check 6: 56 ÷ 6 = not whole ✗."
-  },
-  {
-    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
-    question: "How many factors does 36 have in total?",
-    options: ["7", "8", "9", "10"],
-    answer: 2,
-    explanation: "Factors of 36: 1, 2, 3, 4, 6, 9, 12, 18, 36. That's 9 factors in total."
-  },
-
-  // UNIT 3: Quadrilaterals (5 questions)
-  {
-    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
-    question: "A parallelogram has one angle of 65°. What are the OTHER three angles?",
-    options: ["65°, 115°, 115°", "65°, 65°, 115°", "115°, 115°, 65°", "65°, 65°, 65°"],
-    answer: 0,
-    explanation: "In a parallelogram, opposite angles are equal and co-interior angles add to 180°. So: 65°, 115°, 65°, 115°."
-  },
-  {
-    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
-    question: "Which quadrilateral has EXACTLY ONE pair of parallel sides?",
-    options: ["Rhombus", "Parallelogram", "Trapezium", "Rectangle"],
-    answer: 2,
-    explanation: "A trapezium has exactly one pair of parallel sides. The other shapes listed all have two pairs."
-  },
-  {
-    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
-    question: "The angles of a quadrilateral always add up to:",
-    options: ["180°", "270°", "360°", "540°"],
-    answer: 2,
-    explanation: "The interior angles of any quadrilateral always sum to 360°. You can split it into two triangles (2 × 180° = 360°)."
-  },
-  {
-    unit: "Quadrilaterals", unitNum: 3, type: "input",
-    question: "Three angles of a quadrilateral are 90°, 85°, and 110°. What is the fourth angle?",
-    answer: "75", accept: ["75", "75°"],
-    explanation: "All four angles must add up to 360°. 360° − 90° − 85° − 110° = 75°."
-  },
-  {
-    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
-    question: "A rhombus and a square both have 4 equal sides. What does a SQUARE have that a RHOMBUS may NOT have?",
-    options: ["4 equal sides", "2 pairs of parallel sides", "4 right angles (90°)", "Diagonals that bisect each other"],
-    answer: 2,
-    explanation: "A square has all angles equal to 90°. A rhombus has equal sides but its angles are NOT necessarily 90°."
-  },
-
-  // UNIT 4: Angles (5 questions)
-  {
-    unit: "Angles", unitNum: 4, type: "mcq",
-    question: "Angles on a straight line add up to 180°. If one angle is 47°, what is the other?",
-    options: ["113°", "133°", "143°", "153°"],
-    answer: 1,
-    explanation: "180° − 47° = 133°. Angles on a straight line are supplementary and always add to 180°."
-  },
-  {
-    unit: "Angles", unitNum: 4, type: "input",
-    question: "Angles around a point add up to 360°. Three angles at a point are 125°, 90°, and 80°. What is the fourth angle?",
-    answer: "65", accept: ["65", "65°"],
-    explanation: "360° − 125° − 90° − 80° = 65°."
-  },
-  {
-    unit: "Angles", unitNum: 4, type: "mcq",
-    question: "What type of angle is 215°?",
-    options: ["Acute", "Obtuse", "Reflex", "Right"],
-    answer: 2,
-    explanation: "A reflex angle is greater than 180° and less than 360°. 215° is in that range."
-  },
-  {
-    unit: "Angles", unitNum: 4, type: "mcq",
-    question: "A clock shows 3:00. What is the angle between the minute hand and the hour hand?",
-    options: ["60°", "90°", "120°", "180°"],
-    answer: 1,
-    explanation: "At 3:00, the hour hand points to 3 and the minute hand points to 12. There are 3 hour-sections out of 12, and 360° ÷ 12 × 3 = 90°."
-  },
-  {
-    unit: "Angles", unitNum: 4, type: "input",
-    question: "An equilateral triangle has three equal angles. What is each angle in degrees?",
-    answer: "60", accept: ["60", "60°"],
-    explanation: "All triangles have angles summing to 180°. An equilateral triangle: 180° ÷ 3 = 60° each."
-  },
-
-  // UNIT 5: Line Graphs (5 questions)
-  {
-    unit: "Line Graphs", unitNum: 5, type: "mcq",
-    question: "A line graph shows a plant's height (cm): Week 1=4, Week 2=7, Week 3=11, Week 4=16, Week 5=22. Between which two weeks did it grow the MOST?",
-    options: ["Week 1 to Week 2", "Week 2 to Week 3", "Week 3 to Week 4", "Week 4 to Week 5"],
-    answer: 3,
-    explanation: "Growth: W1→W2 = 3cm, W2→W3 = 4cm, W3→W4 = 5cm, W4→W5 = 6cm. The largest growth is between Week 4 and Week 5."
-  },
-  {
-    unit: "Line Graphs", unitNum: 5, type: "input",
-    question: "A line graph shows temperatures: Mon=18°C, Tue=22°C, Wed=15°C, Thu=25°C, Fri=20°C. What is the mean (average) temperature?",
-    answer: "20", accept: ["20", "20°C", "20°"],
-    explanation: "Mean = (18 + 22 + 15 + 25 + 20) ÷ 5 = 100 ÷ 5 = 20°C."
-  },
-  {
-    unit: "Line Graphs", unitNum: 5, type: "mcq",
-    question: "A graph shows sales: Jan=350, Feb=280, Mar=410, Apr=390. Between which months did sales DROP?",
-    options: ["Jan to Feb", "Feb to Mar", "Mar to Apr", "All of them"],
-    answer: 0,
-    explanation: "Jan (350) to Feb (280): 350 > 280, so sales DROPPED. Feb to Mar: increased. Mar to Apr: decreased."
-  },
-  {
-    unit: "Line Graphs", unitNum: 5, type: "mcq",
-    question: "A line graph's vertical axis goes from 0 to 100 with 5 equal intervals marked. What does each small interval represent?",
-    options: ["5", "10", "15", "20"],
-    answer: 3,
-    explanation: "From 0 to 100 with 5 equal intervals: each interval = 100 ÷ 5 = 20."
-  },
-  {
-    unit: "Line Graphs", unitNum: 5, type: "input",
-    question: "A shop sold 68 items on Monday, and 20% more on Tuesday. How many items did they sell on Tuesday?",
-    answer: "81.6", accept: ["81.6", "82", "81"],
-    explanation: "20% of 68 = 68 × 0.2 = 13.6. 68 + 13.6 = 81.6 (or approximately 82 items if rounded)."
-  },
-
-  // UNIT 6: Time (5 questions)
-  {
-    unit: "Time", unitNum: 6, type: "mcq",
-    question: "A train leaves at 08:45 and arrives 3 hours 55 minutes later. What time does it arrive?",
-    options: ["11:40", "12:30", "12:40", "12:45"],
-    answer: 2,
-    explanation: "08:45 + 3h = 11:45. 11:45 + 55min = 12:40."
-  },
-  {
-    unit: "Time", unitNum: 6, type: "input",
-    question: "How many hours are there in one full week (7 days)?",
-    answer: "168", accept: ["168"],
-    explanation: "1 day = 24 hours. 7 × 24 = 168 hours."
-  },
-  {
-    unit: "Time", unitNum: 6, type: "mcq",
-    question: "Alexis started her homework at 16:20 and finished at 18:05. How long did she work?",
-    options: ["1 hour 25 minutes", "1 hour 35 minutes", "1 hour 45 minutes", "2 hours 5 minutes"],
-    answer: 2,
-    explanation: "From 16:20 to 17:20 = 1 hour. From 17:20 to 18:05 = 45 minutes. Total = 1 hour 45 minutes."
-  },
-  {
-    unit: "Time", unitNum: 6, type: "mcq",
-    question: "What is 23:15 in 12-hour clock format?",
-    options: ["11:15 a.m.", "11:15 p.m.", "12:15 p.m.", "1:15 p.m."],
-    answer: 1,
-    explanation: "23:15 is after midday. Subtract 12: 23 − 12 = 11. So 23:15 = 11:15 p.m."
-  },
-  {
-    unit: "Time", unitNum: 6, type: "input",
-    question: "How many minutes are in 4 hours and 40 minutes?",
-    answer: "280", accept: ["280"],
-    explanation: "4 hours = 240 minutes. 240 + 40 = 280 minutes."
-  },
-
-  // UNIT 7: Decimals (5 questions)
-  {
-    unit: "Decimals", unitNum: 7, type: "mcq",
-    question: "Order these decimals from smallest to largest: 3.07, 3.7, 3.70, 3.07",
-    options: ["3.07 < 3.7 = 3.70", "3.7 < 3.70 < 3.07", "3.07 < 3.70 < 3.7", "3.07 = 3.7 < 3.70"],
-    answer: 0,
-    explanation: "3.07 is less than 3.7. And 3.7 = 3.70 (they are equal). So: 3.07 < 3.7 = 3.70."
-  },
-  {
-    unit: "Decimals", unitNum: 7, type: "input",
-    question: "Calculate: 4.56 + 2.37 = ?",
-    answer: "6.93", accept: ["6.93"],
-    explanation: "4.56 + 2.37: units 4+2=6, tenths 5+3=8, hundredths 6+7=13 (carry 1). Result: 6.93."
-  },
-  {
-    unit: "Decimals", unitNum: 7, type: "mcq",
-    question: "Which of these is equivalent to 0.75?",
-    options: ["3/5", "3/4", "7/5", "7/10"],
-    answer: 1,
-    explanation: "0.75 = 75/100 = 3/4. You can check: 3 ÷ 4 = 0.75 ✓"
-  },
-  {
-    unit: "Decimals", unitNum: 7, type: "input",
-    question: "A bag of apples weighs 2.85 kg. A bag of oranges weighs 1.67 kg. What is the total weight?",
-    answer: "4.52", accept: ["4.52", "4.52kg", "4.52 kg"],
-    explanation: "2.85 + 1.67 = 4.52 kg."
-  },
-  {
-    unit: "Decimals", unitNum: 7, type: "mcq",
-    question: "What is 7.4 − 2.86?",
-    options: ["4.44", "4.54", "5.46", "4.46"],
-    answer: 1,
-    explanation: "7.40 − 2.86 = 4.54."
-  },
-
-  // UNIT 8: Multiplication (5 questions)
-  {
-    unit: "Multiplication", unitNum: 8, type: "input",
-    question: "Calculate: 47 × 36 = ?",
-    answer: "1692", accept: ["1692", "1,692", "1 692"],
-    explanation: "47 × 36: 47×6=282, 47×30=1410. 282 + 1410 = 1,692."
-  },
-  {
-    unit: "Multiplication", unitNum: 8, type: "input",
-    question: "A cinema has 28 rows with 35 seats each. How many seats are there in total?",
-    answer: "980", accept: ["980"],
-    explanation: "28 × 35 = 980 seats."
-  },
-  {
-    unit: "Multiplication", unitNum: 8, type: "mcq",
-    question: "Estimate: 49 × 62 is closest to:",
-    options: ["2,400", "2,800", "3,000", "3,200"],
-    answer: 2,
-    explanation: "Round to nearest 10: 50 × 60 = 3,000. So 49 × 62 ≈ 3,000."
-  },
-  {
-    unit: "Multiplication", unitNum: 8, type: "input",
-    question: "Calculate: 125 × 8 = ?",
-    answer: "1000", accept: ["1000", "1,000"],
-    explanation: "125 × 8 = 1,000. A handy fact: 125 × 4 × 2 = 500 × 2 = 1,000."
-  },
-  {
-    unit: "Multiplication", unitNum: 8, type: "mcq",
-    question: "A baker makes 24 batches of cookies with 36 cookies in each batch. How many cookies in total?",
-    options: ["760", "864", "840", "900"],
-    answer: 1,
-    explanation: "24 × 36 = 864 cookies."
-  }
+  {unit:"5-Digit Numbers",unitNum:1,type:"mcq",question:"Arrange these in order from smallest to largest: 56,789 | 56,879 | 56,798 | 56,897",options:["56,789; 56,798; 56,879; 56,897","56,897; 56,879; 56,798; 56,789","56,789; 56,879; 56,798; 56,897","56,798; 56,789; 56,879; 56,897"],answer:0,explanation:"Look at the hundreds place: 7, 8, 7, 8. Then look at the tens: 8, 7, 9, 9. Order: 56,789 < 56,798 < 56,879 < 56,897."},
+  {unit:"5-Digit Numbers",unitNum:1,type:"input",question:"A number has 8 in the ten thousands place, 4 in the thousands place, 6 in the hundreds place, 3 in the tens place, and 9 in the units place. What is the number?",answer:"84639",accept:["84639","84,639"],explanation:"80,000 + 4,000 + 600 + 30 + 9 = 84,639."},
+  {unit:"5-Digit Numbers",unitNum:1,type:"mcq",question:"What is 10,000 more than 45,678?",options:["55,678","45,688","45,778","46,678"],answer:0,explanation:"45,678 + 10,000 = 55,678."},
+  {unit:"5-Digit Numbers",unitNum:1,type:"input",question:"Round 78,549 to the nearest thousand.",answer:"79000",accept:["79000","79,000"],explanation:"Look at the hundreds digit: 5. Since 5 ≥ 5, round up. 78,549 → 79,000."},
+  {unit:"5-Digit Numbers",unitNum:1,type:"mcq",question:"What is the difference between 98,765 and 45,321?",options:["53,444","53,445","54,444","54,445"],answer:0,explanation:"98,765 - 45,321 = 53,444."},
+  {unit:"Multiples & Factors",unitNum:2,type:"mcq",question:"Find the GCD (Greatest Common Divisor) of 24 and 36.",options:["6","8","12","24"],answer:2,explanation:"Factors of 24: 1,2,3,4,6,8,12,24. Factors of 36: 1,2,3,4,6,9,12,18,36. GCD = 12."},
+  {unit:"Multiples & Factors",unitNum:2,type:"input",question:"List the first 6 multiples of 6.",answer:"6,12,18,24,30,36",accept:["6,12,18,24,30,36","6, 12, 18, 24, 30, 36"],explanation:"6×1=6, 6×2=12, 6×3=18, 6×4=24, 6×5=30, 6×6=36."},
+  {unit:"Multiples & Factors",unitNum:2,type:"mcq",question:"Which number is a factor of both 24 and 48?",options:["8","18","12","20"],answer:0,explanation:"24 ÷ 8 = 3 and 48 ÷ 8 = 6. Both divide evenly, so 8 is a common factor."},
+  {unit:"Multiples & Factors",unitNum:2,type:"input",question:"Find the LCM (Least Common Multiple) of 12 and 18.",answer:"36",accept:["36"],explanation:"Multiples of 12: 12, 24, 36... Multiples of 18: 18, 36... LCM = 36."},
+  {unit:"Multiples & Factors",unitNum:2,type:"mcq",question:"Is 144 a multiple of both 9 and 12?",options:["Yes, multiple of both","Yes, multiple of 12 only","Yes, multiple of 9 only","No, not a multiple of either"],answer:0,explanation:"144 ÷ 12 = 12 (yes). 144 ÷ 9 = 16 (yes). So yes, both."},
+  {unit:"Quadrilaterals",unitNum:3,type:"mcq",question:"A parallelogram has sides of 5cm and 8cm. What are the lengths of the opposite sides?",options:["5cm and 8cm","8cm and 8cm","5cm and 5cm","Cannot determine"],answer:0,explanation:"In a parallelogram, opposite sides are equal in length. So the opposite sides are also 5cm and 8cm."},
+  {unit:"Quadrilaterals",unitNum:3,type:"input",question:"A square has a perimeter of 32cm. What is the length of each side?",answer:"8",accept:["8","8cm"],explanation:"Perimeter = 4 × side. 32 = 4 × side. side = 8cm."},
+  {unit:"Quadrilaterals",unitNum:3,type:"mcq",question:"How many diagonals does a quadrilateral have?",options:["1","2","3","4"],answer:1,explanation:"A quadrilateral has 2 diagonals that connect opposite corners."},
+  {unit:"Quadrilaterals",unitNum:3,type:"input",question:"A rectangle has a length of 12cm and a width of 7cm. What is its perimeter?",answer:"38",accept:["38","38cm"],explanation:"Perimeter = 2(length + width) = 2(12 + 7) = 2(19) = 38cm."},
+  {unit:"Quadrilaterals",unitNum:3,type:"mcq",question:"Which statement about a rhombus is NOT true?",options:["All sides are equal","Opposite sides are parallel","All angles are equal","Diagonals bisect each other"],answer:2,explanation:"A rhombus does NOT have all equal angles (unless it's a square). The other statements are true."},
+  {unit:"Angles",unitNum:4,type:"input",question:"The three angles of a triangle are 45°, 65°, and x°. Find x.",answer:"70",accept:["70","70°"],explanation:"Sum of angles in a triangle = 180°. 45 + 65 + x = 180. x = 70°."},
+  {unit:"Angles",unitNum:4,type:"mcq",question:"Two angles are supplementary. If one angle is 127°, what is the other angle?",options:["53°","63°","73°","37°"],answer:0,explanation:"Supplementary angles add to 180°. 180° - 127° = 53°."},
+  {unit:"Angles",unitNum:4,type:"input",question:"If an angle measures 148°, what is the measure of its reflex angle?",answer:"212",accept:["212","212°"],explanation:"Reflex angle = 360° - 148° = 212°."},
+  {unit:"Angles",unitNum:4,type:"mcq",question:"At what time between 1:00 and 2:00 do the clock hands form a right angle (90°)?",options:["1:15","1:30","1:00","Cannot determine"],answer:3,explanation:"The minute hand and hour hand relationship requires calculation beyond simple logic."},
+  {unit:"Angles",unitNum:4,type:"input",question:"In a quadrilateral, three angles are 85°, 95°, and 105°. What is the fourth angle?",answer:"75",accept:["75","75°"],explanation:"Sum of angles in a quadrilateral = 360°. 85 + 95 + 105 + x = 360. x = 75°."},
+  {unit:"Line Graphs",unitNum:5,type:"input",question:"Sarah's test scores: 72, 78, 75, 80, 85. What is the range?",answer:"13",accept:["13"],explanation:"Range = Highest - Lowest = 85 - 72 = 13."},
+  {unit:"Line Graphs",unitNum:5,type:"input",question:"Temperature readings: 18°C, 22°C, 20°C, 19°C, 21°C. What is the mean?",answer:"20",accept:["20","20°C"],explanation:"(18+22+20+19+21) ÷ 5 = 100 ÷ 5 = 20°C."},
+  {unit:"Line Graphs",unitNum:5,type:"mcq",question:"Sales data: Mon 40, Tue 45, Wed 42, Thu 48, Fri 50. What is the mode?",options:["40","45","No mode","48"],answer:2,explanation:"Mode is the number that appears most often. All values appear once, so there is no mode."},
+  {unit:"Line Graphs",unitNum:5,type:"input",question:"Heights (cm): 152, 148, 155, 151, 149. What is the median?",answer:"151",accept:["151"],explanation:"Arrange in order: 148, 149, 151, 152, 155. Middle value = 151."},
+  {unit:"Line Graphs",unitNum:5,type:"mcq",question:"If a graph shows a steep upward line followed by a flat line, this means:",options:["Increasing then decreasing","Increasing then staying constant","Decreasing then increasing","Stays the same throughout"],answer:1,explanation:"Steep upward line = rapid increase. Flat line = value stays constant."},
+  {unit:"Time",unitNum:6,type:"input",question:"A train journey takes 2 hours 35 minutes. If it departs at 10:25 a.m., what time does it arrive?",answer:"1:00 p.m.",accept:["1:00 p.m.","13:00","1 p.m.","1:00pm"],explanation:"10:25 + 2:35 = 13:00 = 1:00 p.m."},
+  {unit:"Time",unitNum:6,type:"input",question:"How many seconds are in 4 minutes 30 seconds?",answer:"270",accept:["270"],explanation:"4 minutes = 240 seconds. 240 + 30 = 270 seconds."},
+  {unit:"Time",unitNum:6,type:"mcq",question:"A book has 280 pages. If you read 40 pages per day, how many days to finish?",options:["6 days","7 days","8 days","9 days"],answer:1,explanation:"280 ÷ 40 = 7 days."},
+  {unit:"Time",unitNum:6,type:"input",question:"Convert 5:45 p.m. to 24-hour time.",answer:"17:45",accept:["17:45"],explanation:"5:45 p.m. = 17:45 in 24-hour format."},
+  {unit:"Time",unitNum:6,type:"input",question:"How many days are in 6 weeks?",answer:"42",accept:["42"],explanation:"6 weeks × 7 days = 42 days."},
+  {unit:"Decimals",unitNum:7,type:"input",question:"What is 3.4 + 5.67 + 1.2?",answer:"10.27",accept:["10.27"],explanation:"3.4 + 5.67 + 1.2 = 10.27."},
+  {unit:"Decimals",unitNum:7,type:"input",question:"Calculate: 24.5 ÷ 5 = ?",answer:"4.9",accept:["4.9"],explanation:"24.5 ÷ 5 = 4.9."},
+  {unit:"Decimals",unitNum:7,type:"mcq",question:"Which decimal is equivalent to 3/5?",options:["0.6","0.35","0.53","0.305"],answer:0,explanation:"3 ÷ 5 = 0.6."},
+  {unit:"Decimals",unitNum:7,type:"input",question:"15.3 metres = ? metres ? centimetres",answer:"15 metres 30 centimetres",accept:["15 metres 30 centimetres","15m 30cm"],explanation:"0.3 m = 30 cm, so 15.3 m = 15 m 30 cm."},
+  {unit:"Decimals",unitNum:7,type:"input",question:"What is 0.8 of 125?",answer:"100",accept:["100"],explanation:"0.8 × 125 = 100."},
+  {unit:"Multiplication",unitNum:8,type:"input",question:"Calculate: 45 × 23 = ?",answer:"1035",accept:["1035"],explanation:"(40 × 23) + (5 × 23) = 920 + 115 = 1035."},
+  {unit:"Multiplication",unitNum:8,type:"mcq",question:"A cinema has 28 rows with 32 seats in each row. How many seats total?",options:["896","892","856","832"],answer:0,explanation:"28 × 32 = 896 seats."},
+  {unit:"Multiplication",unitNum:8,type:"input",question:"Calculate: 125 × 8 = ?",answer:"1000",accept:["1000"],explanation:"125 × 8 = 1000."},
+  {unit:"Multiplication",unitNum:8,type:"mcq",question:"Which calculation is correct?",options:["35 × 12 = 420","36 × 12 = 431","37 × 12 = 444","38 × 12 = 456"],answer:0,explanation:"35 × 12 = 420."},
+  {unit:"Multiplication",unitNum:8,type:"input",question:"A supermarket orders 24 boxes with 50 items in each box. How many items total?",answer:"1200",accept:["1200"],explanation:"24 × 50 = 1200 items."}
 ];
 
-const unitNames = [
-  "5-Digit Numbers", "Multiples & Factors", "Quadrilaterals", "Angles",
-  "Line Graphs", "Time", "Decimals", "Multiplication"
-];
-
+const unitNames = ["5-Digit Numbers","Multiples & Factors","Quadrilaterals","Angles","Line Graphs","Time","Decimals","Multiplication"];
 let correctTotal = 0, wrongTotal = 0, answeredTotal = 0;
 let answered = new Array(questions.length).fill(false);
 
-function init() {
-  buildTopicNav();
-  renderQuestions();
-  updateScores();
-}
-
+function init() { buildTopicNav(); renderQuestions(); updateScores(); }
 function buildTopicNav() {
   const nav = document.getElementById('topicNav');
   let html = '<button class="topic-btn active" onclick="filterTopic(\'all\', this)">All</button>';
-  unitNames.forEach((name, i) => {
-    html += '<button class="topic-btn" onclick="filterTopic(' + (i+1) + ', this)">' + name + '</button>';
-  });
+  unitNames.forEach((name, i) => { html += '<button class="topic-btn" onclick="filterTopic(' + (i+1) + ', this)">' + name + '</button>'; });
   nav.innerHTML = html;
 }
-
 function filterTopic(unit, btn) {
   document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -1190,7 +904,6 @@ function filterTopic(unit, btn) {
     card.style.display = (unit === "all" || parseInt(card.dataset.unit) === unit) ? 'block' : 'none';
   });
 }
-
 function renderQuestions() {
   const container = document.getElementById('quizContainer');
   const letters = ['A','B','C','D'];
@@ -1212,7 +925,6 @@ function renderQuestions() {
   });
   container.innerHTML = html;
 }
-
 function selectMCQ(qIdx, optIdx, btn) {
   if (answered[qIdx]) return;
   playClickSound();
@@ -1244,7 +956,6 @@ function selectMCQ(qIdx, optIdx, btn) {
   updateScores();
   checkCompletion();
 }
-
 function checkInput(qIdx) {
   if (answered[qIdx]) return;
   const inp = document.getElementById('inp-' + qIdx);
@@ -1281,7 +992,6 @@ function checkInput(qIdx) {
   updateScores();
   checkCompletion();
 }
-
 function updateScores() {
   document.getElementById('correctCount').textContent = correctTotal;
   document.getElementById('wrongCount').textContent = wrongTotal;
@@ -1289,14 +999,7 @@ function updateScores() {
   const pct = Math.round((answeredTotal / questions.length) * 100);
   document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressText').textContent = answeredTotal + ' / ' + questions.length + ' completed';
-  unitNames.forEach((name, i) => {
-    const unitQs = questions.filter(q => q.unitNum === i+1);
-    const allDone = unitQs.every(q => answered[questions.indexOf(q)]);
-    const btns = document.querySelectorAll('.topic-btn');
-    if (allDone && btns[i+1]) btns[i+1].classList.add('done');
-  });
 }
-
 function checkCompletion() {
   if (answeredTotal === questions.length) {
     setTimeout(() => {
@@ -1306,42 +1009,29 @@ function checkCompletion() {
     }, 600);
   }
 }
-
 function showResults() {
   const section = document.getElementById('resultsSection');
   section.classList.add('visible');
   const pct = Math.round((correctTotal / questions.length) * 100);
   let emoji, title;
-  if (pct >= 90) { emoji = '🐕'; title = 'KILL THIS LOVE! YOU\'RE A CHAMPION DOG!'; }
-  else if (pct >= 75) { emoji = '🐕'; title = 'HOW YOU LIKE THAT! PAWSOME CHALLENGE!'; }
-  else if (pct >= 50) { emoji = '🐶'; title = 'DDU-DU DDU-DU! YOU\'RE LEARNING FAST!'; }
-  else { emoji = '🐶'; title = 'KEEP PRACTISING, BLINK! YOU GOT THIS!'; }
+  if (pct >= 90) { emoji = '🐕'; title = 'YOU\'RE A CHAMPION DOG! AMAZING WORK!'; }
+  else if (pct >= 75) { emoji = '🐕'; title = 'OUTSTANDING! YOU\'RE A MATH STAR!'; }
+  else if (pct >= 50) { emoji = '🐶'; title = 'GOOD EFFORT! KEEP PUSHING!'; }
+  else { emoji = '🐶'; title = 'KEEP PRACTICING! YOU\'LL GET THERE!'; }
   document.getElementById('resultsEmoji').textContent = emoji;
   document.getElementById('resultsTitle').textContent = title;
   document.getElementById('resultsScore').textContent = 'You got ' + correctTotal + ' out of ' + questions.length + ' correct (' + pct + '%)';
-  let bHtml = '';
-  unitNames.forEach((name, i) => {
-    const unitQs = questions.filter(q => q.unitNum === i+1);
-    let uc = 0;
-    unitQs.forEach(q => { if (document.getElementById('qcard-' + questions.indexOf(q)).classList.contains('answered-correct')) uc++; });
-    const cls = uc >= Math.ceil(unitQs.length * 0.6) ? 'good' : 'needs-work';
-    bHtml += '<span class="breakdown-chip ' + cls + '">' + name + ': ' + uc + '/' + unitQs.length + '</span>';
-  });
-  document.getElementById('resultsBreakdown').innerHTML = bHtml;
   section.scrollIntoView({ behavior: 'smooth' });
 }
-
 function restart() {
   playClickSound();
   correctTotal = 0; wrongTotal = 0; answeredTotal = 0;
   answered = new Array(questions.length).fill(false);
   document.getElementById('resultsSection').classList.remove('visible');
-  document.querySelectorAll('.topic-btn').forEach((b, i) => { b.classList.remove('done', 'active'); if (i === 0) b.classList.add('active'); });
   renderQuestions();
   updateScores();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
 init();
 </script>
 </body>

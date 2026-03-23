@@ -853,288 +853,281 @@ function bigConfetti() {
 }
 
 const questions = [
-  // UNIT 1: 5-digit Numbers (5 questions)
+  // UNIT 1: 5-Digit Numbers — COMPLETELY NEW (5 questions)
   {
     unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
-    question: "What is the place value of the digit 5 in the number 54,128?",
-    options: ["Hundreds place", "Thousands place", "Ten thousands place", "Tens place"],
+    question: "What is the value of the digit 5 in the number 85,302?",
+    options: ["5", "50", "5,000", "50,000"],
+    answer: 3,
+    explanation: "In 85,302, the 5 is in the ten thousands place, so its value is 50,000."
+  },
+  {
+    unit: "5-Digit Numbers", unitNum: 1, type: "input",
+    question: "What number is made from: 7 ten thousands + 3 thousands + 9 hundreds + 1 ten + 6 units?",
+    answer: "73916", accept: ["73916", "73,916"],
+    explanation: "70,000 + 3,000 + 900 + 10 + 6 = 73,916."
+  },
+  {
+    unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
+    question: "Which number is smallest?",
+    options: ["34,567", "34,657", "33,567", "34,576"],
     answer: 2,
-    explanation: "In 54,128, the digit 5 is in the ten thousands place, so its place value is ten thousands."
+    explanation: "33,567 has 3 in the ten thousands place, while the others have 4. So 33,567 is the smallest."
   },
   {
     unit: "5-Digit Numbers", unitNum: 1, type: "input",
-    question: "What is the value of the digit 4 in the number 84,125?",
-    answer: "4000", accept: ["4000", "4,000", "4 000"],
-    explanation: "The digit 4 is in the thousands place, so its value is 4 \u00d7 1,000 = 4,000."
+    question: "Round 56,482 to the nearest hundred.",
+    answer: "56500", accept: ["56500", "56,500"],
+    explanation: "Look at the tens digit: 8. Since 8 ≥ 5, round up. 56,482 rounds to 56,500."
   },
   {
     unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
-    question: "Fill in the pattern: 9,996 \u2192 9,997 \u2192 9,998 \u2192 ____ \u2192 ____",
-    options: ["9,999 \u2192 10,000", "10,000 \u2192 10,001", "9,999 \u2192 9,990", "10,000 \u2192 9,999"],
-    answer: 0,
-    explanation: "The pattern counts up by 1 each time, so the next two numbers are 9,999 and 10,000."
-  },
-  {
-    unit: "5-Digit Numbers", unitNum: 1, type: "mcq",
-    question: "Which 5-digit number becomes a 4-digit number when you subtract 1 from it?",
-    options: ["99,999", "10,000", "10,001", "11,000"],
-    answer: 1,
-    explanation: "10,000 \u2212 1 = 9,999 which is a 4-digit number."
-  },
-  {
-    unit: "5-Digit Numbers", unitNum: 1, type: "input",
-    question: "In the number 13,531, what is the difference between the values of the two digits '3'?",
-    answer: "2970", accept: ["2970", "2,970", "2 970"],
-    explanation: "The first 3 is in the thousands place (value = 3,000). The second 3 is in the tens place (value = 30). Difference = 3,000 \u2212 30 = 2,970."
+    question: "In 92,148, what digit is in the hundreds place?",
+    options: ["9", "2", "1", "4"],
+    answer: 2,
+    explanation: "From right to left: 8 (units), 4 (tens), 1 (hundreds), 2 (thousands), 9 (ten thousands)."
   },
 
-  // UNIT 2: Multiples and Factors (5 questions)
+  // UNIT 2: Multiples & Factors — COMPLETELY NEW (5 questions)
   {
     unit: "Multiples & Factors", unitNum: 2, type: "mcq",
-    question: "Which of the following is a multiple of 6?",
-    options: ["14", "22", "30", "25"],
-    answer: 2,
-    explanation: "30 = 6 \u00d7 5, so 30 is a multiple of 6."
-  },
-  {
-    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
-    question: "Which number is a factor of 24?",
-    options: ["5", "7", "9", "8"],
-    answer: 3,
-    explanation: "24 \u00f7 8 = 3, so 8 is a factor of 24."
-  },
-  {
-    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
-    question: "Which of these is a common multiple of 4 and 6?",
-    options: ["8", "10", "12", "18"],
-    answer: 2,
-    explanation: "12 = 4 \u00d7 3 and 12 = 6 \u00d7 2, so 12 is a common multiple of 4 and 6."
+    question: "Which of these is a multiple of 9?",
+    options: ["27", "28", "29", "30"],
+    answer: 0,
+    explanation: "27 = 9 × 3, so 27 is a multiple of 9."
   },
   {
     unit: "Multiples & Factors", unitNum: 2, type: "input",
-    question: "List all the factors of 12 from smallest to largest, separated by commas.",
-    answer: "1,2,3,4,6,12", accept: ["1,2,3,4,6,12", "1, 2, 3, 4, 6, 12"],
-    explanation: "The factors of 12 are: 1, 2, 3, 4, 6, 12."
+    question: "List the first 5 multiples of 7.",
+    answer: "7,14,21,28,35", accept: ["7,14,21,28,35", "7, 14, 21, 28, 35"],
+    explanation: "7×1=7, 7×2=14, 7×3=21, 7×4=28, 7×5=35."
   },
   {
     unit: "Multiples & Factors", unitNum: 2, type: "mcq",
-    question: "What is the first 3 common multiples of 3 and 5?",
-    options: ["3, 5, 15", "15, 30, 45", "10, 15, 20", "5, 10, 15"],
-    answer: 1,
-    explanation: "The common multiples of 3 and 5 are: 15, 30, 45, 60... The first three are 15, 30, 45."
+    question: "Which number is a factor of 36?",
+    options: ["4", "5", "7", "8"],
+    answer: 0,
+    explanation: "36 ÷ 4 = 9, so 4 is a factor of 36."
+  },
+  {
+    unit: "Multiples & Factors", unitNum: 2, type: "input",
+    question: "Find all the factors of 15.",
+    answer: "1,3,5,15", accept: ["1,3,5,15", "1, 3, 5, 15"],
+    explanation: "1×15=15, 3×5=15, so the factors are: 1, 3, 5, 15."
+  },
+  {
+    unit: "Multiples & Factors", unitNum: 2, type: "mcq",
+    question: "What is the lowest common multiple (LCM) of 4 and 5?",
+    options: ["10", "15", "20", "25"],
+    answer: 2,
+    explanation: "Multiples of 4: 4, 8, 12, 16, 20... Multiples of 5: 5, 10, 15, 20... First common = 20."
   },
 
-  // UNIT 3: Quadrilaterals (5 questions)
+  // UNIT 3: Quadrilaterals — COMPLETELY NEW (5 questions)
   {
     unit: "Quadrilaterals", unitNum: 3, type: "mcq",
-    question: "A polygon must have at least how many sides?",
-    options: ["2", "3", "4", "5"],
-    answer: 1,
-    explanation: "A polygon must have at least 3 straight sides."
+    question: "What do all quadrilaterals have in common?",
+    options: ["4 sides and 4 angles", "All equal sides", "All right angles", "No curved edges"],
+    answer: 0,
+    explanation: "By definition, all quadrilaterals have exactly 4 sides and 4 angles."
   },
   {
     unit: "Quadrilaterals", unitNum: 3, type: "mcq",
-    question: "Which of the following is NOT a polygon?",
-    options: ["Triangle", "Rectangle", "Circle", "Pentagon"],
+    question: "A rhombus is a quadrilateral where:",
+    options: ["All sides are equal", "All angles are equal", "Has one right angle", "Has curved sides"],
+    answer: 0,
+    explanation: "A rhombus has all 4 sides equal in length, but angles may not all be equal."
+  },
+  {
+    unit: "Quadrilaterals", unitNum: 3, type: "input",
+    question: "Name 4 types of quadrilaterals.",
+    answer: "square,rectangle,parallelogram,trapezium", accept: ["square,rectangle,parallelogram,trapezium", "square, rectangle, parallelogram, trapezium", "square,rectangle,rhombus,trapezium"],
+    explanation: "Types: Square, Rectangle, Parallelogram, Trapezium, Rhombus, Kite."
+  },
+  {
+    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
+    question: "Which quadrilateral has exactly one pair of parallel sides?",
+    options: ["Square", "Rectangle", "Trapezium", "Parallelogram"],
     answer: 2,
-    explanation: "A circle has curved edges, so it is not a polygon. Polygons must have straight sides."
+    explanation: "A trapezium has one pair of parallel sides. Parallelograms have two pairs."
   },
   {
     unit: "Quadrilaterals", unitNum: 3, type: "mcq",
-    question: "How many sides does a quadrilateral have?",
-    options: ["3", "4", "5", "6"],
-    answer: 1,
-    explanation: "A quadrilateral has exactly 4 sides."
-  },
-  {
-    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
-    question: "Which of the following quadrilaterals has all 4 sides equal and all 4 angles equal?",
-    options: ["Trapezium", "Parallelogram", "Rhombus", "Square"],
-    answer: 3,
-    explanation: "A square has all 4 sides equal in length and all 4 angles are right angles (90\u00b0)."
-  },
-  {
-    unit: "Quadrilaterals", unitNum: 3, type: "mcq",
-    question: "A shape with curved edges is _____ a polygon.",
-    options: ["always", "sometimes", "never"],
+    question: "How many degrees is the total of all angles in a quadrilateral?",
+    options: ["180°", "270°", "360°", "450°"],
     answer: 2,
-    explanation: "A polygon must have straight sides only. Shapes with any curved edges are never polygons."
+    explanation: "All interior angles in any quadrilateral add up to 360°."
   },
 
-  // UNIT 4: Angles (5 questions)
+  // UNIT 4: Angles — COMPLETELY NEW (5 questions)
   {
     unit: "Angles", unitNum: 4, type: "mcq",
-    question: "An angle that is exactly 90\u00b0 is called a _____ angle.",
-    options: ["Acute", "Right", "Obtuse", "Straight"],
-    answer: 1,
-    explanation: "A right angle is exactly 90\u00b0."
-  },
-  {
-    unit: "Angles", unitNum: 4, type: "mcq",
-    question: "An angle that is greater than 90\u00b0 but less than 180\u00b0 is called:",
-    options: ["Acute angle", "Right angle", "Obtuse angle", "Reflex angle"],
+    question: "Which type of angle measures between 90° and 180°?",
+    options: ["Acute", "Right", "Obtuse", "Reflex"],
     answer: 2,
-    explanation: "An obtuse angle is greater than 90\u00b0 but less than 180\u00b0."
+    explanation: "Obtuse angles are greater than 90° but less than 180°."
+  },
+  {
+    unit: "Angles", unitNum: 4, type: "input",
+    question: "If two angles are complementary and one is 28°, what is the other angle?",
+    answer: "62", accept: ["62", "62°"],
+    explanation: "Complementary angles add to 90°. 90° - 28° = 62°."
   },
   {
     unit: "Angles", unitNum: 4, type: "mcq",
-    question: "An acute angle is always:",
-    options: ["Greater than 90\u00b0", "Exactly 90\u00b0", "Less than 90\u00b0", "Exactly 180\u00b0"],
+    question: "What is the name of an angle greater than 180°?",
+    options: ["Obtuse", "Straight", "Reflex", "Zero"],
     answer: 2,
-    explanation: "An acute angle is any angle that measures less than 90\u00b0."
+    explanation: "A reflex angle measures between 180° and 360°."
+  },
+  {
+    unit: "Angles", unitNum: 4, type: "input",
+    question: "If two angles are supplementary and one is 115°, what is the other?",
+    answer: "65", accept: ["65", "65°"],
+    explanation: "Supplementary angles add to 180°. 180° - 115° = 65°."
   },
   {
     unit: "Angles", unitNum: 4, type: "mcq",
-    question: "A straight line forms an angle of:",
-    options: ["90\u00b0", "180\u00b0", "270\u00b0", "360\u00b0"],
+    question: "On a clock at 6:00, what angle do the hands make?",
+    options: ["90°", "180°", "270°", "360°"],
     answer: 1,
-    explanation: "A straight angle is exactly 180\u00b0."
-  },
-  {
-    unit: "Angles", unitNum: 4, type: "mcq",
-    question: "One full turn is equal to:",
-    options: ["90\u00b0", "180\u00b0", "270\u00b0", "360\u00b0"],
-    answer: 3,
-    explanation: "One full turn (complete rotation) is 360\u00b0."
+    explanation: "At 6:00, the hour hand points down and the minute hand points up = 180°."
   },
 
-  // UNIT 5: Line Graphs (5 questions)
+  // UNIT 5: Line Graphs — COMPLETELY NEW (5 questions)
+  {
+    unit: "Line Graphs", unitNum: 5, type: "input",
+    question: "Garden plants: Week 1=12cm, Week 2=18cm, Week 3=25cm, Week 4=31cm. Total growth?",
+    answer: "19", accept: ["19"],
+    explanation: "31cm (final) - 12cm (start) = 19cm total growth."
+  },
   {
     unit: "Line Graphs", unitNum: 5, type: "mcq",
-    question: "A line graph shows data that changes over ______.",
-    options: ["colour", "size", "time", "shape"],
-    answer: 2,
-    explanation: "Line graphs are used to show how data changes over time."
-  },
-  {
-    unit: "Line Graphs", unitNum: 5, type: "mcq",
-    question: "On a line graph, a line going upward from left to right means the data is:",
-    options: ["Decreasing", "Staying the same", "Increasing", "Not changing"],
-    answer: 2,
-    explanation: "When the line slopes upward from left to right, the data values are increasing."
+    question: "A flat horizontal line on a graph means:",
+    options: ["Growing fast", "Staying constant", "Decreasing", "No pattern"],
+    answer: 1,
+    explanation: "A horizontal line shows the value stays the same over time."
   },
   {
     unit: "Line Graphs", unitNum: 5, type: "input",
-    question: "A shop sold these sandwiches: Sun = 68, Mon = 74, Tue = 56, Wed = 34, Thu = 94, Fri = 56, Sat = 80. What is the total for the week?",
-    answer: "462", accept: ["462"],
-    explanation: "68 + 74 + 56 + 34 + 94 + 56 + 80 = 462 sandwiches."
+    question: "Temperatures: 14°C, 17°C, 15°C, 19°C, 16°C. What is the mean temperature?",
+    answer: "16.2", accept: ["16.2", "16"],
+    explanation: "(14+17+15+19+16)÷5 = 81÷5 = 16.2°C."
   },
   {
     unit: "Line Graphs", unitNum: 5, type: "mcq",
-    question: "On a vertical axis, if the scale goes 0, 10, 20, 30..., each small interval represents:",
-    options: ["1", "2", "5", "10"],
-    answer: 3,
-    explanation: "Each labelled mark represents 10, so each small interval between marks is 10."
+    question: "A steep upward line on a graph shows:",
+    options: ["Slow increase", "Rapid increase", "Rapid decrease", "No change"],
+    answer: 1,
+    explanation: "A steep upward line means values are increasing quickly."
   },
   {
-    unit: "Line Graphs", unitNum: 5, type: "mcq",
-    question: "If a line graph shows a steep drop between two points, this means:",
-    options: ["The value increased quickly", "The value decreased quickly", "The value stayed the same", "There is no data"],
-    answer: 1,
-    explanation: "A steep downward line means the value decreased rapidly between those two time points."
+    unit: "Line Graphs", unitNum: 5, type: "input",
+    question: "Pages read: Day 1=45, Day 2=52, Day 3=48. What is the median?",
+    answer: "48", accept: ["48"],
+    explanation: "Arrange in order: 45, 48, 52. Middle value = 48."
   },
 
-  // UNIT 6: Time (5 questions)
+  // UNIT 6: Time — COMPLETELY NEW (5 questions)
   {
     unit: "Time", unitNum: 6, type: "input",
-    question: "How many minutes are in 2 hours and 15 minutes?",
-    answer: "135", accept: ["135"],
-    explanation: "2 hours = 120 minutes. 120 + 15 = 135 minutes."
+    question: "Convert 3 hours 45 minutes into minutes.",
+    answer: "225", accept: ["225"],
+    explanation: "3 hours = 180 minutes. 180 + 45 = 225 minutes."
   },
   {
     unit: "Time", unitNum: 6, type: "mcq",
-    question: "What time is it 45 minutes after 10:30 a.m.?",
-    options: ["11:00 a.m.", "11:15 a.m.", "11:30 a.m.", "10:75 a.m."],
+    question: "A lesson starts at 9:20 a.m. and lasts 50 minutes. What time does it end?",
+    options: ["10:05 a.m.", "10:10 a.m.", "10:15 a.m.", "9:70 a.m."],
     answer: 1,
-    explanation: "10:30 + 30 minutes = 11:00. Then add 15 more minutes = 11:15 a.m."
+    explanation: "9:20 + 50 minutes = 10:10 a.m."
   },
   {
     unit: "Time", unitNum: 6, type: "input",
-    question: "How many seconds are in 3 minutes?",
-    answer: "180", accept: ["180"],
-    explanation: "1 minute = 60 seconds. 3 \u00d7 60 = 180 seconds."
+    question: "How many days are in 2 weeks and 3 days?",
+    answer: "17", accept: ["17"],
+    explanation: "2 weeks = 14 days. 14 + 3 = 17 days."
   },
   {
     unit: "Time", unitNum: 6, type: "mcq",
-    question: "A film starts at 2:45 p.m. and ends at 4:20 p.m. How long is the film?",
-    options: ["1 hour 25 minutes", "1 hour 35 minutes", "1 hour 45 minutes", "2 hours 35 minutes"],
+    question: "11:35 p.m. in 24-hour clock time is:",
+    options: ["11:35", "23:35", "12:35", "01:35"],
     answer: 1,
-    explanation: "From 2:45 to 3:45 = 1 hour. From 3:45 to 4:20 = 35 minutes. Total = 1 hour 35 minutes."
+    explanation: "11:35 p.m. is 11:35 + 12:00 = 23:35 in 24-hour format."
   },
   {
-    unit: "Time", unitNum: 6, type: "mcq",
-    question: "Which is the same as 3:00 p.m. in 24-hour time?",
-    options: ["03:00", "13:00", "15:00", "30:00"],
-    answer: 2,
-    explanation: "3:00 p.m. in 24-hour time is 15:00 (add 12 to the hour for p.m. times after 12)."
+    unit: "Time", unitNum: 6, type: "input",
+    question: "How many minutes between 2:15 p.m. and 3:40 p.m.?",
+    answer: "85", accept: ["85"],
+    explanation: "From 2:15 to 3:15 = 60 minutes. From 3:15 to 3:40 = 25 minutes. Total = 85 minutes."
   },
 
-  // UNIT 7: Decimals (5 questions)
+  // UNIT 7: Decimals — COMPLETELY NEW (5 questions)
   {
     unit: "Decimals", unitNum: 7, type: "mcq",
-    question: "Which of these is a two-decimal-place number?",
-    options: ["4.3", "5.2", "3.08", "17.8"],
+    question: "Which decimal is the largest?",
+    options: ["0.9", "0.09", "0.91", "0.109"],
     answer: 2,
-    explanation: "3.08 has two digits after the decimal point (0 and 8), making it a two-decimal-place number."
+    explanation: "0.91 > 0.9 > 0.109 > 0.09. The largest is 0.91."
   },
   {
     unit: "Decimals", unitNum: 7, type: "input",
-    question: "Write 6 equal parts of 0.1 as a decimal.",
-    answer: "0.6", accept: ["0.6", ".6", "0.60"],
-    explanation: "6 \u00d7 0.1 = 0.6"
+    question: "Calculate: 2.3 + 4.7 = ?",
+    answer: "7", accept: ["7", "7.0"],
+    explanation: "2.3 + 4.7 = 7.0 = 7."
   },
   {
     unit: "Decimals", unitNum: 7, type: "mcq",
-    question: "On a number line from 0 to 1, what decimal is exactly halfway?",
-    options: ["0.25", "0.4", "0.5", "0.75"],
-    answer: 2,
-    explanation: "0.5 is exactly halfway between 0 and 1."
-  },
-  {
-    unit: "Decimals", unitNum: 7, type: "mcq",
-    question: "34.56 = 30 + 4 + _____ + 0.06. What goes in the blank?",
-    options: ["5", "0.5", "0.56", "50"],
+    question: "What is 0.25 of 80?",
+    options: ["16", "20", "25", "40"],
     answer: 1,
-    explanation: "34.56 = 30 + 4 + 0.5 + 0.06. The digit 5 in 34.56 is in the tenths place, so its value is 0.5."
+    explanation: "0.25 × 80 = 20."
   },
   {
     unit: "Decimals", unitNum: 7, type: "input",
-    question: "69 equal parts of 0.01 = ?",
-    answer: "0.69", accept: ["0.69", ".69"],
-    explanation: "69 \u00d7 0.01 = 0.69"
+    question: "5.6 metres = ? metres ? centimetres",
+    answer: "5 metres 60 centimetres", accept: ["5 metres 60 centimetres", "5m 60cm", "5 metres and 60 centimetres"],
+    explanation: "0.6 m = 60 cm, so 5.6 m = 5 m 60 cm."
+  },
+  {
+    unit: "Decimals", unitNum: 7, type: "input",
+    question: "12 - 4.5 = ?",
+    answer: "7.5", accept: ["7.5"],
+    explanation: "12.0 - 4.5 = 7.5."
   },
 
-  // UNIT 8: Multiplication (5 questions)
+  // UNIT 8: Multiplication — COMPLETELY NEW (5 questions)
   {
     unit: "Multiplication", unitNum: 8, type: "input",
-    question: "Calculate: 13 \u00d7 8 = ?",
-    answer: "104", accept: ["104"],
-    explanation: "Using the area model: 8 \u00d7 10 = 80 and 8 \u00d7 3 = 24. So 80 + 24 = 104."
+    question: "Calculate: 16 × 7 = ?",
+    answer: "112", accept: ["112"],
+    explanation: "(10 × 7) + (6 × 7) = 70 + 42 = 112."
   },
   {
     unit: "Multiplication", unitNum: 8, type: "input",
-    question: "Calculate: 34 \u00d7 23 = ?",
-    answer: "782", accept: ["782"],
-    explanation: "Using the grid method: 30\u00d720=600, 30\u00d73=90, 4\u00d720=80, 4\u00d73=12. Total = 600+90+80+12 = 782."
-  },
-  {
-    unit: "Multiplication", unitNum: 8, type: "input",
-    question: "Calculate: 58 \u00d7 26 = ?",
-    answer: "1508", accept: ["1508", "1,508", "1 508"],
-    explanation: "58 \u00d7 6 = 348 and 58 \u00d7 20 = 1,160. Total = 348 + 1,160 = 1,508."
+    question: "A baker makes 8 boxes with 24 biscuits in each. How many biscuits total?",
+    answer: "192", accept: ["192"],
+    explanation: "8 × 24 = 192 biscuits."
   },
   {
     unit: "Multiplication", unitNum: 8, type: "mcq",
-    question: "Which multiplication gives the largest answer?",
-    options: ["43 \u00d7 30", "18 \u00d7 24", "402 \u00d7 15", "560 \u00d7 40"],
-    answer: 3,
-    explanation: "43\u00d730 = 1,290. 18\u00d724 = 432. 402\u00d715 = 6,030. 560\u00d740 = 22,400. The largest is 560 \u00d7 40."
+    question: "Which calculation equals 540?",
+    options: ["27 × 20", "30 × 18", "45 × 12", "60 × 9"],
+    answer: 1,
+    explanation: "30 × 18 = 540."
   },
   {
     unit: "Multiplication", unitNum: 8, type: "input",
-    question: "A school has 12 classrooms with 15 students each. How many students in total?",
-    answer: "180", accept: ["180"],
-    explanation: "12 \u00d7 15 = 180 students."
+    question: "Calculate: 22 × 15 = ?",
+    answer: "330", accept: ["330"],
+    explanation: "(20 × 15) + (2 × 15) = 300 + 30 = 330."
+  },
+  {
+    unit: "Multiplication", unitNum: 8, type: "mcq",
+    question: "A library has 5 shelves with 32 books on each shelf. How many books altogether?",
+    options: ["160", "165", "170", "175"],
+    answer: 0,
+    explanation: "5 × 32 = 160 books."
   }
 ];
 
@@ -1184,7 +1177,7 @@ function renderQuestions() {
       });
       html += '</div>';
     } else {
-      html += '<div class="input-answer" id="input-' + idx + '"><input type="text" id="inp-' + idx + '" placeholder="Type your answer\u2026" onkeypress="if(event.key===\'Enter\')checkInput(' + idx + ')"><button class="check-btn" id="checkbtn-' + idx + '" onclick="checkInput(' + idx + ')">Check</button></div>';
+      html += '<div class="input-answer" id="input-' + idx + '"><input type="text" id="inp-' + idx + '" placeholder="Type your answer…" onkeypress="if(event.key===\'Enter\')checkInput(' + idx + ')"><button class="check-btn" id="checkbtn-' + idx + '" onclick="checkInput(' + idx + ')">Check</button></div>';
     }
     html += '<div class="feedback" id="fb-' + idx + '"></div></div>';
   });
